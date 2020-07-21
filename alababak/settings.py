@@ -34,7 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'custom_user.apps.CustomUserConfig',
+    #'custom_user.apps.CustomUserConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account',
-    'home',
+    'location',
+    'inventory',
 ]
 
 MIDDLEWARE = [
@@ -146,4 +147,4 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = MEDIA_DIR
 
-AUTH_USER_MODEL = 'custom_user.User'
+#AUTH_USER_MODEL = 'custom_user.User'
