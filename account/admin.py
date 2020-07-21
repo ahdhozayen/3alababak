@@ -1,11 +1,11 @@
 from django.contrib import admin
-from account.models import supplier,customer,company,address
+from account.models import *
 
 # Register your models here.
-admin.site.register(supplier)
-admin.site.register(customer)
-admin.site.register(address)
-admin.site.register(company)
+admin.site.register(Supplier)
+admin.site.register(Customer)
+admin.site.register(Address)
+admin.site.register(Company)
 # class CustomerInline(admin.TabularInline):
 #    model = customer
 # class SupplierInline(admin.TabularInline):

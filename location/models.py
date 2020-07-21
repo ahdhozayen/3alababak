@@ -1,9 +1,9 @@
 from django.db import models
-from account.models import company
+from account.models import Company
 
 # Create your models here.
-class location(models.Model):
-    company = models.ForeignKey(company,on_delete =models.CASCADE,)
+class Location(models.Model):
+    company = models.ForeignKey(Company,on_delete =models.CASCADE,)
     type = models.CharField(max_length  = 30)
     code =models.CharField(max_length  = 30)
     name =models.CharField(max_length  = 30)

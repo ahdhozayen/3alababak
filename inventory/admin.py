@@ -4,37 +4,37 @@ from inventory.models import *
 
 # Register your models here.
 #admin.site.register(product,)
-admin.site.register(brand)
-admin.site.register(category)
-admin.site.register(UOM)
+admin.site.register(Brand)
+admin.site.register(Category)
+admin.site.register(Uom)
 #admin.site.register(item)
 #admin.site.register(product_attribute)
-admin.site.register(attribute)
+admin.site.register(Attribute)
 #admin.site.register(item_attribute_value)
 
-class item_attribute_valueInline(admin.TabularInline):
-    model = item_attribute_value
+class ItemAttributeValueInline(admin.TabularInline):
+    model = ItemAttributeValue
 
-class product_attributeInline(admin.TabularInline):
-    model = product_attribute
+class ProductAttributeInline(admin.TabularInline):
+    model = ProductAttribute
 
-class itemInline(admin.TabularInline):
-    model = item
+class ItemInline(admin.TabularInline):
+    model = Item
 
-@admin.register(item)
+@admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
     inlines = [
 
-        item_attribute_valueInline,
+        ItemAttributeValueInline,
 
     ]
 
-@admin.register(product)
+@admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
 
     inlines = [
-        product_attributeInline,
-        itemInline,
+        ProductAttributeInline,
+        ItemInline,
 
 
     ]
