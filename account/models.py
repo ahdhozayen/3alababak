@@ -9,6 +9,10 @@ class Customer(models.Model):
     landline = models.CharField(max_length=30,blank= True)
     status = models.BooleanField(default = False)
     company= models.ForeignKey('Company',on_delete=models.CASCADE,)
+    created_at = models.DateField(auto_now_add=True,null =True)
+    updated_at = models.DateField(null =True)
+    created_by = models.IntegerField(default = None)
+    updated_by = models.IntegerField(default = None)
 
 
     def __str__(self):
@@ -23,6 +27,10 @@ class Supplier(models.Model):
     landline = models.CharField(max_length=30,blank= True)
     status = models.BooleanField(default = False)
     company= models.ForeignKey('Company',on_delete=models.CASCADE,)
+    created_at = models.DateField(auto_now_add=True,null =True)
+    updated_at = models.DateField(null =True)
+    created_by = models.IntegerField(default = None)
+    updated_by = models.IntegerField(default = None)
 
     def __str__(self):
         return self.first_name+' '+self.last_name
@@ -36,6 +44,11 @@ class Address(models.Model):
     phone_number= models.CharField(max_length=30,blank= True)
     landline= models.CharField(max_length=30,blank= True)
     zip_code= models.CharField(max_length=30)
+    created_at = models.DateField(auto_now_add=True,null =True)
+    updated_at = models.DateField(null =True)
+    created_by = models.IntegerField(default = None)
+    updated_by = models.IntegerField(default = None)
+
     class Meta:
         verbose_name_plural = "Addresses"
     def __str__(self):
@@ -45,6 +58,11 @@ class Address(models.Model):
 
 class Company(models.Model):
     name = models.CharField(max_length=30)
+    created_at = models.DateField(auto_now_add=True,null =True)
+    updated_at = models.DateField(null =True)
+    created_by = models.IntegerField(default = None)
+    updated_by = models.IntegerField(default = None)
+
 
     def __str__(self):
         return self.name

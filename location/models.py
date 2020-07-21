@@ -16,6 +16,10 @@ class Location(models.Model):
     manager_name=models.CharField(max_length  = 30)
     manager_mail =models.EmailField()
     manager_phone_number=models.CharField(max_length  = 30)
+    created_at = models.DateField(auto_now_add=True,null =True)
+    updated_at = models.DateField(null =True)
+    created_by = models.IntegerField(default = None)
+    updated_by = models.IntegerField(default = None)
 
     def __str__(self):
         return self.name

@@ -7,6 +7,10 @@ class Brand(models.Model):
     name = models.CharField(max_length = 30)
     description = models.TextField(max_length = 150,blank= True,null=True)
     company = models.ForeignKey(Company,on_delete= models.CASCADE,)
+    created_at = models.DateField(auto_now_add=True,null =True)
+    updated_at = models.DateField(null =True)
+    created_by = models.IntegerField(default = None)
+    updated_by = models.IntegerField(default = None)
 
     def __str__(self):
         return self.name
@@ -16,6 +20,11 @@ class Category(models.Model):
     description = models.TextField(max_length = 150,blank= True,null=True)
     company = models.ForeignKey(Company,on_delete= models.CASCADE,)
     parent_category = models.ForeignKey('Category',on_delete= models.CASCADE,blank=True,null= True)
+    created_at = models.DateField(auto_now_add=True,null =True)
+    updated_at = models.DateField(null =True)
+    created_by = models.IntegerField(default = None)
+    updated_by = models.IntegerField(default = None)
+
     class meta:
         verbose_name_plural = "Categories"
 
@@ -28,6 +37,10 @@ class Uom(models.Model):
     type =models.CharField(max_length = 30)
     description=models.CharField(max_length = 150,blank= True,null=True)
     company = models.ForeignKey(Company,on_delete= models.CASCADE,)
+    created_at = models.DateField(auto_now_add=True,null =True)
+    updated_at = models.DateField(null =True)
+    created_by = models.IntegerField(default = None)
+    updated_by = models.IntegerField(default = None)
 
     def __str__(self):
         return self.name
@@ -39,6 +52,11 @@ class Product(models.Model):
     name = models.CharField(max_length = 30)
     description =models.CharField(max_length = 30,blank= True,null=True)
     uom=models.ForeignKey(Uom,on_delete= models.CASCADE,)
+    created_at = models.DateField(auto_now_add=True,null =True)
+    updated_at = models.DateField(null =True)
+    created_by = models.IntegerField(default = None)
+    updated_by = models.IntegerField(default = None)
+
     def __str__(self):
         return self.name
 
@@ -53,6 +71,10 @@ class Attribute(models.Model):
 class ProductAttribute(models.Model):
     product =models.ForeignKey(Product,on_delete= models.CASCADE,)
     attribute=models.ForeignKey(Attribute,on_delete= models.CASCADE,)
+    created_at = models.DateField(auto_now_add=True,null =True)
+    updated_at = models.DateField(null =True)
+    created_by = models.IntegerField(default = None)
+    updated_by = models.IntegerField(default = None)
 
     def __str__(self):
         return self.product.name+' '+self.attribute.name
@@ -70,6 +92,10 @@ class Item(models.Model):
     product =models.ForeignKey(Product,on_delete= models.CASCADE,)
     location =models.ForeignKey(Location,on_delete= models.CASCADE,)
     uom=models.ForeignKey(Uom,on_delete= models.CASCADE,)
+    created_at = models.DateField(auto_now_add=True,null =True)
+    updated_at = models.DateField(null =True)
+    created_by = models.IntegerField(default = None)
+    updated_by = models.IntegerField(default = None)
 
     def __str__(self):
         return self.name
@@ -78,6 +104,10 @@ class ItemAttributeValue(models.Model):
     item =models.ForeignKey(Item,on_delete= models.CASCADE,)
     attribute=models.ForeignKey(Attribute,on_delete= models.CASCADE,)
     value = models.CharField(max_length = 30)
+    created_at = models.DateField(auto_now_add=True,null =True)
+    updated_at = models.DateField(null =True)
+    created_by = models.IntegerField(default = None)
+    updated_by = models.IntegerField(default = None)
 
     def __str__(self):
         return self.item.name+' '+self.attribute.name
