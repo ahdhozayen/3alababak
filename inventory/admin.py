@@ -21,6 +21,16 @@ class ProductAttributeInline(admin.TabularInline):
 class ItemInline(admin.TabularInline):
     model = Item
 
+class StokeEntryInline(admin.TabularInline):
+    model = StokeEntry
+
+
+@admin.register(StokeTake)
+class StokeTake(admin.ModelAdmin):
+    inlines = [
+        StokeEntryInline,
+    ]
+
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
     inlines = [

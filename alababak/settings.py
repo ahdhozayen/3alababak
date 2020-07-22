@@ -34,17 +34,19 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    #'custom_user.apps.CustomUserConfig',
+    'custom_user.apps.CustomUserConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cities_light',
     'account',
     'location',
     'inventory',
     'orders',
+    'djmoney',
 ]
 
 MIDDLEWARE = [
@@ -87,7 +89,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -148,4 +149,4 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = MEDIA_DIR
 
-#AUTH_USER_MODEL = 'custom_user.User'
+AUTH_USER_MODEL = 'custom_user.User'
