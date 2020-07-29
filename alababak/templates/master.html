@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html {% if LANGUAGE_BIDI %} dir="rtl" {% else %} dir="ltr" {% endif %}>
+
+<head>
+    <meta charset="UTF-8">
+    <title>3alababak</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="{% static 'font/iconsmind-s/css/iconsminds.css' %}" />
+    <link rel="stylesheet" href="{% static 'font/simple-line-icons/css/simple-line-icons.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'css/vendor/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/vendor/bootstrap.rtl.only.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/vendor/fullcalendar.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/vendor/dataTables.bootstrap4.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/vendor/datatables.responsive.bootstrap4.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/vendor/select2.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/vendor/perfect-scrollbar.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/vendor/glide.core.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/vendor/bootstrap-stars.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/vendor/nouislider.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/vendor/bootstrap-datepicker3.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/vendor/component-custom-switch.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+</head>
+
+<body id="app-container" class="menu-default show-spinner">
+    <nav class="navbar fixed-top">
+      {% include 'top-nav.html' %}
+    </nav>
+    <div class="menu">
+      {% include 'side-nav.html' %}
+    </div>
+
+    <main>
+
+        <div class="container-fluid">
+          {% block body %}
+          {% endblock body %}
+        </div>
+    </main>
+
+    <footer class="page-footer">
+        {% include 'footer.html' %}
+    </footer>
+
+    <script src="{% static 'js/vendor/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/vendor/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/vendor/Chart.bundle.min.js' %}"></script>
+    <script src="{% static 'js/vendor/chartjs-plugin-datalabels.js' %}"></script>
+    <script src="{% static 'js/vendor/moment.min.js' %}"></script>
+    <script src="{% static 'js/vendor/fullcalendar.min.js' %}"></script>
+    <script src="{% static 'js/vendor/datatables.min.js' %}"></script>
+    <script src="{% static 'js/vendor/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'js/vendor/progressbar.min.js' %}"></script>
+    <script src="{% static 'js/vendor/jquery.barrating.min.js' %}"></script>
+    <script src="{% static 'js/vendor/select2.full.js' %}"></script>
+    <script src="{% static 'js/vendor/nouislider.min.js' %}"></script>
+    <script src="{% static 'js/vendor/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'js/vendor/Sortable.js' %}"></script>
+    <script src="{% static 'js/vendor/mousetrap.min.js' %}"></script>
+    <script src="{% static 'js/vendor/glide.min.js' %}"></script>
+    <script src="{% static 'js/dore.script.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+
+</html>
