@@ -44,10 +44,10 @@ INSTALLED_APPS = [
     'cities_light',
     'djmoney',
     'account',
-    'home',
     'location',
     'inventory',
     'orders',
+    'home',
 ]
 
 MIDDLEWARE = [
