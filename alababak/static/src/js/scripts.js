@@ -1,4 +1,4 @@
-/* Dore Theme Select & Initializer Script 
+/* Dore Theme Select & Initializer Script
 
 Table of Contents
 
@@ -7,6 +7,8 @@ Table of Contents
 */
 
 /* 01. Css Loading Util */
+
+
 function loadStyle(href, callback) {
   for (var i = 0; i < document.styleSheets.length; i++) {
     if (document.styleSheets[i].href == href) {
@@ -23,7 +25,8 @@ function loadStyle(href, callback) {
       callback();
     };
   }
-  var mainCss = $(head).find('[href$="main.css"]');
+
+  var mainCss = $(head).find('[href$="static/src/css/main.css"]');
   if (mainCss.length !== 0) {
     mainCss[0].before(link);
   } else {
@@ -128,7 +131,7 @@ function loadStyle(href, callback) {
   $(".radius-radio[data-radius='" + radius + "']").attr("checked", true);
   $("#switchDark").attr("checked", theme.indexOf("dark") > 0 ? true : false);
 
-  loadStyle("css/" + theme, onStyleComplete);
+  loadStyle("static/src/css/" + theme, onStyleComplete);
   function onStyleComplete() {
     setTimeout(onStyleCompleteDelayed, 300);
   }

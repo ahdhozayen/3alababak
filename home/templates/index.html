@@ -1,5 +1,5 @@
 {% extends 'master.html'%}
-{% load staticfiles%}
+{% load static %}
 {% load i18n %}
 {% load l10n %}
 {% get_current_language as LANGUAGE_CODE %}
@@ -111,7 +111,7 @@
                 <div class="scroll dashboard-list-with-thumbs">
                     <div class="d-flex flex-row mb-3">
                         <a class="d-block position-relative" href="#">
-                            <img src="img/products/marble-cake-thumb.jpg" alt="Marble Cake"
+                            <img src="{% static 'src/img/products/marble-cake-thumb.jpg' %}" alt="Marble Cake"
                                 class="list-thumbnail border-0" />
                             <span
                                 class="badge badge-pill badge-theme-2 position-absolute badge-top-right">NEW</span>
@@ -131,7 +131,7 @@
 
                     <div class="d-flex flex-row mb-3">
                         <a class="d-block position-relative" href="#">
-                            <img src="img/products/fruitcake-thumb.jpg" alt="Fruitcake"
+                            <img src="{% static 'src/img/products/fruitcake-thumb.jpg' %}" alt="Fruitcake"
                                 class="list-thumbnail border-0" />
                             <span
                                 class="badge badge-pill badge-theme-2 position-absolute badge-top-right">NEW</span>
@@ -151,7 +151,7 @@
 
                     <div class="d-flex flex-row mb-3">
                         <a class="d-block position-relative" href="#">
-                            <img src="img/products/chocolate-cake-thumb.jpg" alt="Chocolate Cake"
+                            <img src="{% static 'src/img/products/chocolate-cake-thumb.jpg' %}" alt="Chocolate Cake"
                                 class="list-thumbnail border-0" />
                             <span
                                 class="badge badge-pill badge-theme-1 position-absolute badge-top-right">PROCESS</span>
@@ -171,7 +171,7 @@
 
                     <div class="d-flex flex-row mb-3">
                         <a class="d-block position-relative" href="#">
-                            <img src="img/products/fat-rascal-thumb.jpg" alt="Fat Rascal"
+                            <img src="{% static 'src/img/products/fat-rascal-thumb.jpg' %}" alt="Fat Rascal"
                                 class="list-thumbnail border-0" />
                             <span
                                 class="badge badge-pill badge-theme-3 position-absolute badge-top-right">DONE</span>
@@ -191,7 +191,7 @@
 
                     <div class="d-flex flex-row mb-3">
                         <a class="d-block position-relative" href="#">
-                            <img src="img/products/streuselkuchen-thumb.jpg" alt="Streuselkuchen"
+                            <img src="{% static 'src/img/products/streuselkuchen-thumb.jpg' %}" alt="Streuselkuchen"
                                 class="list-thumbnail border-0" />
                             <span
                                 class="badge badge-pill badge-theme-3 position-absolute badge-top-right">DONE</span>
@@ -211,7 +211,7 @@
 
                     <div class="d-flex flex-row mb-3">
                         <a class="d-block position-relative" href="#">
-                            <img src="img/products/cremeschnitte-thumb.jpg" alt="Cremeschnitte"
+                            <img src="{% static 'src/img/products/cremeschnitte-thumb.jpg' %}" alt="Cremeschnitte"
                                 class="list-thumbnail border-0" />
                             <span
                                 class="badge badge-pill badge-theme-3 position-absolute badge-top-right">DONE</span>
@@ -391,7 +391,7 @@
                 <div class="scroll dashboard-list-with-user">
                     <div class="d-flex flex-row mb-3 pb-3 border-bottom">
                         <a href="#">
-                            <img src="img/profiles/l-1.jpg" alt="Mayra Sibley"
+                            <img src="{% static 'src/img/profiles/l-1.jpg' %}" alt="Mayra Sibley"
                                 class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall" />
                         </a>
                         <div class="pl-3">
@@ -404,7 +404,7 @@
 
                     <div class="d-flex flex-row mb-3 pb-3 border-bottom">
                         <a href="#">
-                            <img src="img/profiles/l-7.jpg" alt="Mimi Carreira"
+                            <img src="{% static 'src/img/profiles/l-7.jpg' %}" alt="Mimi Carreira"
                                 class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall" />
                         </a>
                         <div class="pl-3">
@@ -417,7 +417,7 @@
 
                     <div class="d-flex flex-row mb-3 pb-3 border-bottom">
                         <a href="#">
-                            <img src="img/profiles/l-6.jpg" alt="Philip Nelms"
+                            <img src="{% static 'src/img/profiles/l-6.jpg' %}" alt="Philip Nelms"
                                 class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall" />
                         </a>
                         <div class="pl-3">
@@ -430,7 +430,7 @@
 
                     <div class="d-flex flex-row mb-3 pb-3 border-bottom">
                         <a href="#">
-                            <img src="img/profiles/l-3.jpg" alt="Terese Threadgill"
+                            <img src="{% static 'src/img/profiles/l-3.jpg' %}" alt="Terese Threadgill"
                                 class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall" />
                         </a>
                         <div class="pl-3">
@@ -443,7 +443,7 @@
 
                     <div class="d-flex flex-row mb-3 pb-3 border-bottom">
                         <a href="#">
-                            <img src="img/profiles/l-5.jpg" alt="Kathryn Mengel"
+                            <img src="{% static 'src/img/profiles/l-5.jpg' %}" alt="Kathryn Mengel"
                                 class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall" />
                         </a>
                         <div class="pl-3">
@@ -456,7 +456,7 @@
 
                     <div class="d-flex flex-row mb-3 pb-3 border-bottom">
                         <a href="#">
-                            <img src="img/profiles/l-4.jpg" alt="Esperanza Lodge"
+                            <img src="{% static 'src/img/profiles/l-4.jpg' %}" alt="Esperanza Lodge"
                                 class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall" />
                         </a>
                         <div class="pl-3">
@@ -1265,7 +1265,7 @@
                     <div class="glide__track" data-glide-el="track">
                         <div class="glide__slides">
                             <div class="glide__slide">
-                                <img src="img/carousels/1.jpg" alt="Cheesecake" class="mb-4">
+                                <img src="{% static 'src/' %}img/carousels/1.jpg" alt="Cheesecake" class="mb-4">
                                 <h6 class="mb-1"><span class="mr-2">1.</span>Cheesecake</h6>
                                 <select class="rating" data-current-rating="5" data-readonly="true">
                                     <option value="1">1</option>
@@ -1277,7 +1277,7 @@
                                 <p class="text-small text-muted mb-0  d-inline-block">(48)</p>
                             </div>
                             <div class="glide__slide">
-                                <img src="img/carousels/2.jpg" alt="Chocolate Cake" class="mb-4">
+                                <img src="{% static 'src/' %}img/carousels/2.jpg" alt="Chocolate Cake" class="mb-4">
                                 <h6 class="mb-1"><span class="mr-2">2.</span>Chocolate Cake</h6>
                                 <select class="rating" data-current-rating="5" data-readonly="true">
                                     <option value="1">1</option>
@@ -1289,7 +1289,7 @@
                                 <p class="text-small text-muted mb-0  d-inline-block">(48)</p>
                             </div>
                             <div class="glide__slide">
-                                <img src="img/carousels/3.jpg" alt="Cremeschnitte" class="mb-4">
+                                <img src="{% static 'src/' %}img/carousels/3.jpg" alt="Cremeschnitte" class="mb-4">
                                 <h6 class="mb-1"><span class="mr-2">3.</span>Cremeschnitte</h6>
                                 <select class="rating" data-current-rating="5" data-readonly="true">
                                     <option value="1">1</option>
