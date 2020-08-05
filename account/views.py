@@ -4,11 +4,21 @@ from django.forms import inlineformset_factory
 from account.models import Customer, Supplier, Address
 
 
-# Create your views here.
+def list_suppliers_view(request):
+    supliers_list = Supplier.objects.all()
+    supContext = {
+                  'supliers_list':supliers_list,
+    }
+    return render(request, 'list-suppliers.html', supContext)
+
+
 def create_customer_address_account(request):
     form, cust = create_customer(request)
     address = create_address(request, cust)
-    req_form = {'account_form': form, 'address_form': address}
+    req_form = {
+                'account_form': form,
+                'address_form': address
+                }
 
     return render(request, 'account.html', context=req_form)
 
@@ -42,7 +52,6 @@ def create_supplier_account(request):
 
 
 def create_address(request, account_instance):
-
     AddressFormSet = inlineformset_factory(Customer, Address,
                                            form=AddressCreationForm, extra=1)
 

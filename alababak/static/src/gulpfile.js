@@ -33,8 +33,8 @@ gulp.task("browserSync", function(callback) {
 });
 
 gulp.task("watch", function(callback) {
-  gulp.watch("static/src/css/sass/**/*.scss", gulp.series("sass", "reload"));
-  gulp.watch("static/src/js/**/*.js", gulp.series("reload"));
+  gulp.watch("src/css/sass/**/*.scss", gulp.series("sass", "reload"));
+  gulp.watch("src/js/**/*.js", gulp.series("reload"));
   gulp.watch("templates/*.html", gulp.series("reload"));
   callback();
 });
@@ -46,13 +46,13 @@ gulp.task("reload", function(callback) {
 
 
 gulp.task("minifyjs", function(callback) {
-  return gulp.src('static/src/js/**/*')
+  return gulp.src('src/js/**/*')
   .pipe(gulpIf('*.js', terser()))
   .pipe(gulp.dest('dist/js'))
 });
 
 gulp.task("minifycss", function(callback) {
-  return gulp.src('static/src/css/**/*')
+  return gulp.src('src/css/**/*')
   .pipe(gulpIf('*.css', cssminify({zindex: false})))
   .pipe(gulp.dest('dist/css'))
 });
@@ -64,17 +64,17 @@ gulp.task("minifyhtml", function(callback) {
 });
 
 gulp.task('images', function(callback){
-  return gulp.src('static/src/img/**/*.+(png|jpg|gif|svg)')
+  return gulp.src('src/img/**/*.+(png|jpg|gif|svg)')
   .pipe(gulp.dest('dist/img'))
 });
 
 gulp.task('font', function(callback) {
-  return gulp.src('static/src/font/**/*')
+  return gulp.src('src/font/**/*')
   .pipe(gulp.dest('dist/font'))
 });
 
 gulp.task('logos', function(callback) {
-  return gulp.src('static/src/logos/**/*')
+  return gulp.src('src/logos/**/*')
   .pipe(gulp.dest('dist/logos'))
 });
 

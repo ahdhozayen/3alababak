@@ -1,44 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Account Form</title>
+  <meta charset="UTF-8">
+  <title>Account Form</title>
 </head>
+
 <body>
-    <form method="post">
-        {% csrf_token %}
-        {{account_form.as_p}}
-        <table class="table table-bordered" width="100%" cellspacing="0">
-                       {{ address_form.management_form }}
-                       {% for form in address_form %}
-                       {{ form.id }}
-                       {% if forloop.first %} <!--if in the first loop!-->
-                       <thead>
-                         <tr>
-                           {% for field in form.visible_fields %}
-                           <th>{{ field.label|capfirst }}</th>
-                           {% endfor %}
-                         </tr>
-                       </thead>
-                       {% endif %}
-                       <tr>
-                         {% for field in form.visible_fields %}
-                         <td>
-                           {# exclude the hidden fields in the form #}
-                           {% if forloop.first %}
-                           {% for hidden in form.hidden_fields %}
-                           {{ hidden }}
-                           {% endfor %}
-                           {% endif %}
-                           {{ field.errors.as_ul }}
-                           {{ field }}
-                         </td>
-                         {% endfor %}
-                       </tr>
-                       {% endfor %}
-                     </table>
-                   </div>
-         <input type="submit"  value='Create Account'>
-    </form>
+  <form method="post">
+    {% csrf_token %}
+    {{account_form.as_p}}
+    <table class="table table-bordered" width="100%" cellspacing="0">
+      {{ address_form.management_form }}
+      {% for form in address_form %}
+      {{ form.id }}
+      {% if forloop.first %}
+      <!--if in the first loop!-->
+      <thead>
+        <tr>
+          {% for field in form.visible_fields %}
+          <th>{{ field.label|capfirst }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      {% endif %}
+      <tr>
+        {% for field in form.visible_fields %}
+        <td>
+          {# exclude the hidden fields in the form #}
+          {% if forloop.first %}
+          {% for hidden in form.hidden_fields %}
+          {{ hidden }}
+          {% endfor %}
+          {% endif %}
+          {{ field.errors.as_ul }}
+          {{ field }}
+        </td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </table>
+    </div>
+    <input type="submit" value='Create Account'>
+  </form>
 </body>
+
 </html>
