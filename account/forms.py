@@ -6,7 +6,15 @@ from django.forms import inlineformset_factory
 class CustomerCreationForm(forms.ModelForm):
     class Meta:
         model = Customer
-        exclude = ('created_at', 'last_updated_at', 'created_by', 'last_updated_by')
+        exclude = ('company', 'created_at', 'last_updated_at', 'created_by', 'last_updated_by')
+
+    def __init__(self, *args, **kwargs):
+        super(CustomerCreationForm, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            if self.fields[field].widget.input_type == 'checkbox':
+                self.fields[field].widget.attrs['class'] = 'form-check-input'
+            else:
+                self.fields[field].widget.attrs['class'] = 'form-control'
 
 
 class SupplierCreationForm(forms.ModelForm):
@@ -27,6 +35,13 @@ class AddressCreationForm(forms.ModelForm):
     class Meta:
         model = Address
         exclude = ('customer', 'supplier', 'created_at', 'last_updated_at', 'created_by', 'last_updated_by')
+    def __init__(self, *args, **kwargs):
+        super(AddressCreationForm, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            if self.fields[field].widget.input_type == 'checkbox':
+                self.fields[field].widget.attrs['class'] = 'form-check-input'
+            else:
+                self.fields[field].widget.attrs['class'] = 'form-control'
 
 
 class CompanyCreationForm(forms.ModelForm):
@@ -35,7 +50,5 @@ class CompanyCreationForm(forms.ModelForm):
         exclude = ('created_at', 'last_updated_at', 'created_by', 'last_updated_by')
 
 
-customer_address_formset = inlineformset_factory(Customer, Address,
-                                                 form=AddressCreationForm, extra=3)
-supplier_address_formset = inlineformset_factory(Supplier, Address,
-                                                 form=AddressCreationForm, extra=3)
+customer_address_formset = inlineformset_factory(Customer, Address, form=AddressCreationForm, extra=3, can_delete=False)
+supplier_address_formset = inlineformset_factory(Supplier, Address, form=AddressCreationForm, extra=3, can_delete=False)
