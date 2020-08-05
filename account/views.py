@@ -16,11 +16,11 @@ def create_customer_address_account(request):
     form, cust = create_customer(request)
     address = create_address(request, cust)
     req_form = {
-                'account_form': form,
+                'supplier_form': form,
                 'address_form': address
                 }
 
-    return render(request, 'account.html', context=req_form)
+    return render(request, 'create-supplier.html', context=req_form)
 
 
 def create_customer(request):
@@ -47,8 +47,8 @@ def create_supplier_account(request):
             form.save()
     else:
         form = SupplierCreationForm()
-    req_form = {'form': form}
-    return render(request, 'account.html', context=req_form)
+    req_form = {'supplier_form': form}
+    return render(request, 'create-supplier.html', context=req_form)
 
 
 def create_address(request, account_instance):
