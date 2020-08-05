@@ -27,3 +27,9 @@ class AddressCreationForm(forms.ModelForm):
     class Meta:
         model = Address
         exclude = ('customer', 'supplier', 'created_at', 'last_updated_at', 'created_by', 'last_updated_by')
+
+
+customer_address_formset = inlineformset_factory(Customer, Address,
+                                                 form=AddressCreationForm, extra=3)
+supplier_address_formset = inlineformset_factory(Supplier, Address,
+                                                 form=AddressCreationForm, extra=3)

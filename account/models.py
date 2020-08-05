@@ -58,7 +58,7 @@ class Address(models.Model):
         verbose_name_plural = "Addresses"
 
     def __str__(self):
-        return self.customer.first_name + '\'s address'
+        return self.address
 
 
 class Company(models.Model):
