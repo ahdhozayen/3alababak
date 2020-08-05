@@ -152,9 +152,3 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = MEDIA_DIR
 
 AUTH_USER_MODEL = 'custom_user.User'
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-   }
-}

@@ -1,0 +1,28 @@
+{% extends 'master.html'%}
+{% load static %}
+{% load i18n %}
+{% load l10n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+
+{% block body %}
+    <table>
+    {% for customer in dict_customers %}
+        {% if forloop.first %} <!--if in the first loop!-->
+
+           <thead>
+             <tr>
+               <th> {% for fieldname in customer.keys %}<td>{{ fieldname }}</td>{% endfor %}
+             </tr>
+           </thead>
+        {% endif %}
+        <tr>
+            {% for key, value in customer.items %}
+            <td> {{ value }}</td>
+            {% endfor %}
+        </tr>
+
+    {% endfor %}
+    </table>
+{% endblock %}
