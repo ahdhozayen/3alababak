@@ -1,8 +1,9 @@
-from django.shortcuts import render
-from account.forms import CustomerCreationForm, SupplierCreationForm, AddressCreationForm, customer_address_formset, \
-    supplier_address_formset, CompanyCreationForm
+from django.shortcuts import render, redirect
+from account.forms import (CustomerCreationForm, SupplierCreationForm, AddressCreationForm, customer_address_formset,
+                            supplier_address_formset, CompanyCreationForm,)
 from django.forms import inlineformset_factory
 from account.models import Customer, Supplier, Address
+from django.contrib import messages
 
 
 def list_suppliers_view(request):
@@ -12,16 +13,43 @@ def list_suppliers_view(request):
     }
     return render(request, 'list-suppliers.html', supContext)
 
+def list_customer_view(request):
+    customers_list = Customer.objects.all()
+    supContext = {
+        'customers_list': customers_list,
+    }
+    return render(request, 'list-customers.html', supContext)
+
 
 def create_customer_address_account(request):
-    form, cust = create_customer(request)
-    address = create_address(request, cust, customer_address_formset)
-    req_form = {
-        'supplier_form': form,
-        'address_form': address
-    }
+    if request.method == 'POST':
+        customer_form = CustomerCreationForm(request.POST)
+        address_inlineformset = customer_address_formset(request.POST)
+        if customer_form.is_valid() and address_inlineformset.is_valid():
+            customer_obj = customer_form.save(commit=False)
+            customer_obj.created_by = request.user
+            customer_obj.company = request.user.company
+            customer_obj.save()
+            address_inlineformset = customer_address_formset(request.POST, instance=customer_obj)
+            for form in address_inlineformset:
+                if form.is_valid():
+                    address_obj = form.save(commit=False)
+                    address_obj.created_by = request.user
+                    address_obj.save()
 
-    return render(request, 'create-supplier.html', context=req_form)
+            messages.success(request, 'Saved Successfully')
+            return redirect('account:list-customers')
+        else:
+            print(customer_form.errors)
+    else:
+        customer_form = CustomerCreationForm()
+        address_inlineformset = customer_address_formset()
+
+    customer_information_context = {
+        'account_form': customer_form,
+        'address_inlineformset': address_inlineformset
+    }
+    return render(request, 'create-supplier.html', context=customer_information_context)
 
 
 def create_customer(request):
