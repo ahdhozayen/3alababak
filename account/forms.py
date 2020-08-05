@@ -1,5 +1,5 @@
 from django import forms
-from account.models import Customer, Supplier, Address
+from account.models import Customer, Supplier, Address, Company
 from django.forms import inlineformset_factory
 
 
@@ -27,6 +27,12 @@ class AddressCreationForm(forms.ModelForm):
     class Meta:
         model = Address
         exclude = ('customer', 'supplier', 'created_at', 'last_updated_at', 'created_by', 'last_updated_by')
+
+
+class CompanyCreationForm(forms.ModelForm):
+    class Meta:
+        model = Company
+        exclude = ('created_at', 'last_updated_at', 'created_by', 'last_updated_by')
 
 
 customer_address_formset = inlineformset_factory(Customer, Address,

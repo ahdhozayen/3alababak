@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from account.forms import CustomerCreationForm, SupplierCreationForm, AddressCreationForm, customer_address_formset, \
-    supplier_address_formset
+    supplier_address_formset, CompanyCreationForm
 from django.forms import inlineformset_factory
 from account.models import Customer, Supplier, Address
 
@@ -15,7 +15,7 @@ def list_suppliers_view(request):
 
 def create_customer_address_account(request):
     form, cust = create_customer(request)
-    address = create_address(request, cust,customer_address_formset)
+    address = create_address(request, cust, customer_address_formset)
     req_form = {
         'supplier_form': form,
         'address_form': address
@@ -90,3 +90,13 @@ def list_suppliers(request):
     suppliers = Supplier.objects.all().values()
     supcontext = {'dict_suppliers': suppliers}
     return render(request, 'list_suppliers.html', context=supcontext)
+
+
+def create_company(request):
+    form = CompanyCreationForm()
+    if request.method == 'POST':
+        form = CompanyCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+    req_form = {'company_form': form}
+    return render(request, 'company.html', context=req_form)
