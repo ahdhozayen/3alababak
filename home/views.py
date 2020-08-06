@@ -70,7 +70,7 @@ def user_login(request):
         return render(request, 'login.html')
 
 
-# @login_required(login_url='/login')
+@login_required(login_url='/login')
 def homepage(request):
     return render(request, 'index.html', context=None)
 
