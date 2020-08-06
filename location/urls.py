@@ -1,7 +1,8 @@
 from django.urls import path
-from account import views
+from location import views
 
 app_name = 'location'
+
 urlpatterns = [
     path('create/', views.create_location_view, name='create-location'),
     path('update/', views.update_location_view, name='update-location'),

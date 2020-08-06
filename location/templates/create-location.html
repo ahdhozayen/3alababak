@@ -1,5 +1,106 @@
 {% extends 'master.html'%}
 {% load static %}
+{% load l10n %}
+{% load i18n %}
 
 {% block body %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h1>Datatables Default</h1>
+      <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
+        <ol class="breadcrumb pt-0">
+          <li class="breadcrumb-item">
+            <a href="#">Home</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="#">Library</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Data</li>
+        </ol>
+      </nav>
+      <div class="text-zero top-right-button-container">
+        <button type="button" class="btn btn-primary btn-lg top-right-button mr-1">ADD NEW</button>
+      </div>
+      <div class="separator mb-5"></div>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-body">
+
+      <form method="POST">
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Location type</label>
+            {{location_form.type}}
+          </div>
+          <div class="form-group col-md-6">
+            <label>Code</label>
+            {{location_form.code}}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Location Name</label>
+            {{location_form.name}}
+          </div>
+          <div class="form-group col-md-6">
+            <label>Address</label>
+            {{location_form.address}}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label>City</label>
+            {{location_form.city}}
+          </div>
+          <div class="form-group col-md-4">
+            <label>Country</label>
+            {{location_form.country}}
+          </div>
+          <div class="form-group col-md-4">
+            <label>Zip_code</label>
+            {{location_form.zip_code}}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Phone Number</label>
+            {{location_form.phone_number}}
+          </div>
+          <div class="form-group col-md-6">
+            <label>Land line</label>
+            {{location_form.landline}}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label>Number of products</label>
+            {{location_form.number_of_products}}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label>Manager Name</label>
+            {{location_form.manager_name}}
+          </div>
+          <div class="form-group col-md-4">
+            <label>Manager Email</label>
+            {{location_form.manager_mail}}
+          </div>
+          <div class="form-group col-md-4">
+            <label>Manager Phone</label>
+            {{location_form.manager_phone_number}}
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary d-block mt-3">Save</button>
+      </form>
+    </div>
+  </div>
+
+
+</div>
 {% endblock body %}

@@ -20,6 +20,8 @@ def create_location_view(request):
             location_obj.created_by = request.user
             location_obj.company = request.user.company
             location_obj.save()
+            messages.success(request, 'Saved Successfully')
+            return redirect('location:list-locations')
     else:
         location_form = LocationCreationForm()
     location_context = {
