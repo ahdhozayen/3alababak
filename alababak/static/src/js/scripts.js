@@ -26,7 +26,7 @@ function loadStyle(href, callback) {
     };
   }
 
-  var mainCss = $(head).find('[href$="src/css/main.css"]');
+  var mainCss = $(head).find('[href$="main.css"]');
   if (mainCss.length !== 0) {
     mainCss[0].before(link);
   } else {
@@ -68,7 +68,7 @@ function loadStyle(href, callback) {
   $(".radius-radio[data-radius='" + radius + "']").attr("checked", true);
   $("#switchDark").attr("checked", theme.indexOf("dark") > 0 ? true : false);
 
-  loadStyle("static/src/css/" + theme, onStyleComplete);
+  loadStyle("static/" + theme, onStyleComplete);
 
   function onStyleComplete() {
     setTimeout(onStyleCompleteDelayed, 300);
