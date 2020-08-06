@@ -1,0 +1,42 @@
+{% extends 'master.html' %}
+{% load static %}
+{% load l10n %}
+{% load i18n %}
+
+{% block body%}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h1>Datatables Default</h1>
+      <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
+        <ol class="breadcrumb pt-0">
+          <li class="breadcrumb-item">
+            <a href="#">Home</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="#">Library</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Data</li>
+        </ol>
+      </nav>
+   </div>
+
+  </div>
+  <div class="card mb-4">
+    <div class="card-body">
+      <form method="POST">
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="form-group col-md-6">
+               <label>Company Name</label>
+               {{company_form.name}}
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary d-block mt-3">Save</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
