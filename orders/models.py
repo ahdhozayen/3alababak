@@ -44,21 +44,23 @@ class SalesOrder(models.Model):
 class PurchaseTransaction(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE, )
     quantity = models.IntegerField()
-    total_price = models.DecimalField(max_digits=10000, decimal_places=3)
+    total_price = MoneyField(max_digits=14, decimal_places=2, default_currency='EGP')
     purchase_order = models.ForeignKey(PurchaseOder, on_delete=models.CASCADE, )
     created_at = models.DateField(auto_now_add=True, null=True)
-    last_updated_at = models.DateField(null=True)
-    created_by = models.IntegerField(null=True)
-    last_updated_by = models.IntegerField(null=True)
+    last_updated_at = models.DateField(null=True, auto_now=True, auto_now_add=False)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True,
+                                   related_name="purchase_created_by")
+    last_updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
-    def __str__(self):
+
+def __str__(self):
         return self.purchase_order.code + " Transaction"
 
 
 class SalesTransaction(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE, )
     quantity = models.IntegerField()
-    total_price = models.DecimalField(max_digits=10000, decimal_places=3)
+    total_price = MoneyField(max_digits=14, decimal_places=2, default_currency='EGP')
     sales_order = models.ForeignKey(SalesOrder, on_delete=models.CASCADE, )
     created_at = models.DateField(auto_now_add=True, null=True)
     last_updated_at = models.DateField(null=True)

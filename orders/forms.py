@@ -30,7 +30,10 @@ class PurchaseTransactionCreationForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(PurchaseTransactionCreationForm, self).__init__(*args, **kwargs)
         for field in self.fields:
-            if self.fields[field].widget.input_type == 'checkbox':
+            if field == 'total_price':
+                self.fields[field].widget.attrs['class'] = 'form-control'
+
+            elif self.fields[field].widget.input_type == 'checkbox':
                 self.fields[field].widget.attrs['class'] = 'form-check-input'
             else:
                 self.fields[field].widget.attrs['class'] = 'form-control'
