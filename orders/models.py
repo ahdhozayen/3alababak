@@ -15,7 +15,7 @@ class PurchaseOder(models.Model):
     created_at = models.DateField(auto_now_add=True, null=True)
     last_updated_at = models.DateField(null=True, auto_now=True, auto_now_add=False)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True,
-                                   related_name="order_created_by")
+                                   related_name="purchase_order_created_by")
     last_updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     # date = models.DateField()
@@ -32,10 +32,11 @@ class SalesOrder(models.Model):
     status = models.CharField(max_length=8,
                               choices=[('recieved', 'Received'), ('retuned', 'Returned'), ('shipping', 'Shipping')])
     created_at = models.DateField(auto_now_add=True, null=True)
-    last_updated_at = models.DateField(null=True)
     # date = models.DateField()
-    created_by = models.IntegerField(null=True)
-    last_updated_by = models.IntegerField(null=True)
+    last_updated_at = models.DateField(null=True, auto_now=True, auto_now_add=False)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True,
+                                   related_name="sale_order_created_by")
+    last_updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.code
@@ -49,7 +50,7 @@ class PurchaseTransaction(models.Model):
     created_at = models.DateField(auto_now_add=True, null=True)
     last_updated_at = models.DateField(null=True, auto_now=True, auto_now_add=False)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True,
-                                   related_name="purchase_created_by")
+                                   related_name="purchase_transation_created_by")
     last_updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
 
@@ -63,9 +64,10 @@ class SalesTransaction(models.Model):
     total_price = MoneyField(max_digits=14, decimal_places=2, default_currency='EGP')
     sales_order = models.ForeignKey(SalesOrder, on_delete=models.CASCADE, )
     created_at = models.DateField(auto_now_add=True, null=True)
-    last_updated_at = models.DateField(null=True)
-    created_by = models.IntegerField(null=True)
-    last_updated_by = models.IntegerField(null=True)
+    last_updated_at = models.DateField(null=True, auto_now=True, auto_now_add=False)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True,
+                                   related_name="sale_transaction_created_by")
+    last_updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.sales_order.code + " Transaction"

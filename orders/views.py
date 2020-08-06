@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
-from orders.forms import PurchaseOrderCreationForm, purchase_transaction_formset
-from orders.models import PurchaseOder
+from orders.forms import PurchaseOrderCreationForm, purchase_transaction_formset, sale_transaction_formset, \
+    SaleOrderCreationForm
+from orders.models import PurchaseOder, SalesOrder
 
 
 # Create your views here.
-def create_purchaseOrder_view(request):
+def create_purchase_order_view(request):
     po_form = PurchaseOrderCreationForm()
     po_transaction_inlineformset = purchase_transaction_formset()
     if request.method == 'POST':
@@ -28,10 +29,10 @@ def create_purchaseOrder_view(request):
         'po_form': po_form,
         'po_transaction_inlineformset': po_transaction_inlineformset
     }
-    return render(request, 'create-po.html', context=subcontext)
+    return render(request, 'create-purchase-order.html', context=subcontext)
 
 
-def list_purchaseOrder_view(request):
+def list_purchase_order_view(request):
     purchase_orders = PurchaseOder.objects.all()
     subcontext = {
         'purchase_orders_list': purchase_orders
@@ -39,7 +40,7 @@ def list_purchaseOrder_view(request):
     return render(request, 'list-purchase_orders.html', context=subcontext)
 
 
-def update_purchaseOrder_view(request, id):
+def update_purchase_order_view(request, id):
     order = PurchaseOder.objects.get(pk=id)
     purchase_order_form = PurchaseOrderCreationForm(instance=order)
     po_transaction_inlineformset = purchase_transaction_formset(instance=order)
@@ -64,4 +65,85 @@ def update_purchaseOrder_view(request, id):
         'po_form': purchase_order_form,
         'po_transaction_inlineformset': po_transaction_inlineformset
     }
-    return render(request, 'create-po.html', supContext)
+    return render(request, 'create-purchase-order.html', supContext)
+
+
+def delete_purchase_order_view(request, id):
+    po_order = PurchaseOder.objects.get(pk=id)
+    deleted = po_order.delete()
+    if deleted:
+        return redirect('orders:list-po')
+    else:
+        print("item not deleted")
+
+
+def create_sales_order_view(request):
+    so_form = SaleOrderCreationForm()
+    so_transaction_inlineformset = sale_transaction_formset()
+    if request.method == 'POST':
+        so_form = SaleOrderCreationForm(request.POST)
+        so_transaction_inlineformset = sale_transaction_formset(request.POST)
+        if so_form.is_valid() and so_transaction_inlineformset.is_valid():
+            so_obj = so_form.save(commit=False)
+            so_obj.created_by = request.user
+            so_instance = so_obj.save()
+            so_transaction_inlineformset = sale_transaction_formset(request.POST, instance=so_instance)
+            for form in so_transaction_inlineformset:
+                if form.is_valid():
+                    so_transaction_obj = form.save(commit=False)
+                    so_transaction_obj.created_by = request.user
+                    so_transaction_obj.save()
+
+            return redirect('home:homepage')
+        else:
+            print("Order not place")
+    subcontext = {
+        'so_form': so_form,
+        'so_transaction_inlineformset': so_transaction_inlineformset
+    }
+    return render(request, 'create-sale-order.html', context=subcontext)
+
+
+def list_sale_order_view(request):
+    sale_orders = SalesOrder.objects.all()
+    subcontext = {
+        'sale_orders_list': sale_orders
+    }
+    return render(request, 'list-sale_orders.html', context=subcontext)
+
+
+def update_sale_order_view(request, id):
+    order = SalesOrder.objects.get(pk=id)
+    sale_order_form = SaleOrderCreationForm(instance=order)
+    so_transaction_inlineformset = sale_transaction_formset(instance=order)
+    if request.method == 'POST':
+        sale_order_form = SaleOrderCreationForm(request.POST, instance=order)
+        so_transaction_inlineformset = sale_transaction_formset(request.POST, instance=order)
+        if sale_order_form.is_valid() and so_transaction_inlineformset.is_valid():
+            so_obj = sale_order_form.save(commit=False)
+            so_obj.last_updated_by = request.user
+            so_instance = so_obj.save()
+            so_transaction_inlineformset = sale_transaction_formset(request.POST, instance=so_instance)
+            for form in so_transaction_inlineformset:
+                if form.is_valid():
+                    so_transaction_obj = form.save(commit=False)
+                    so_transaction_obj.last_updated_by = request.user
+                    so_transaction_obj.save()
+            return redirect('orders:list-so')
+        else:
+            print(sale_order_form.errors)
+
+    supContext = {
+        'so_form': sale_order_form,
+        'so_transaction_inlineformset': so_transaction_inlineformset
+    }
+    return render(request, 'create-sale-order.html', supContext)
+
+
+def delete_sale_order_view(request, id):
+    so_order = SalesOrder.objects.get(pk=id)
+    deleted = so_order.delete()
+    if deleted:
+        return redirect('orders:list-so')
+    else:
+        print("item not deleted")
