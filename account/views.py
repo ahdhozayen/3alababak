@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
-from account.forms import (CustomerCreationForm, SupplierCreationForm, AddressCreationForm, customer_address_formset,
+from account.forms import (CustomerCreationForm, SupplierCreationForm, customer_address_formset,
                            supplier_address_formset, CompanyCreationForm, )
-from django.forms import inlineformset_factory
-from account.models import Customer, Supplier, Address
+from account.models import Customer, Supplier
 from django.contrib import messages
 
 
@@ -75,8 +74,9 @@ def create_company(request):
         form = CompanyCreationForm(request.POST)
         if form.is_valid():
             form.save()
+            return redirect('home:homepage')
     req_form = {'company_form': form}
-    return render(request, 'company.html', context=req_form)
+    return render(request, 'create-company.html', context=req_form)
 
 
 def list_customers(request):
@@ -105,3 +105,81 @@ def list_customer_view(request):
         'customers_list': customers_list,
     }
     return render(request, 'list-customers.html', supContext)
+
+
+def update_customer_view(request, id):
+    customer = Customer.objects.get(pk=id)
+    customer_form = CustomerCreationForm(instance=customer)
+    address_inlineformset = customer_address_formset(instance=customer)
+    if request.method == 'POST':
+        customer_form = CustomerCreationForm(request.POST, instance=customer)
+        address_inlineformset = customer_address_formset(request.POST, instance=customer)
+        if customer_form.is_valid() and address_inlineformset.is_valid():
+            customer_obj = customer_form.save(commit=False)
+            customer_obj.last_updated_by = request.user
+            customer_instance = customer_obj.save()
+            address_inlineformset = customer_address_formset(request.POST, instance=customer_instance)
+            for form in address_inlineformset:
+                if form.is_valid():
+                    address_obj = form.save(commit=False)
+                    address_obj.last_updated_by = request.user
+                    address_obj.save()
+            messages.success(request, 'Saved Successfully')
+            return redirect('account:list-customers')
+        else:
+            print(customer_form.errors)
+
+    supContext = {
+        'account_form': customer_form,
+        'address_inlineformset': address_inlineformset
+    }
+    return render(request, 'create-supplier.html', supContext)
+
+
+def update_supplier_view(request, id):
+    supplier = Supplier.objects.get(pk=id)
+    supplier_form = SupplierCreationForm(instance=supplier)
+    address_inlineformset = supplier_address_formset(instance=supplier)
+    if request.method == 'POST':
+        supplier_form = SupplierCreationForm(request.POST, instance=supplier)
+        address_inlineformset = supplier_address_formset(request.POST, instance=supplier)
+        if supplier_form.is_valid() and address_inlineformset.is_valid():
+            supplier_obj = supplier_form.save(commit=False)
+            supplier_obj.last_updated_by = request.user
+            supplier_instance = supplier_obj.save()
+            address_inlineformset = supplier_address_formset(request.POST, instance=supplier_instance)
+            for form in address_inlineformset:
+                if form.is_valid():
+                    address_obj = form.save(commit=False)
+                    address_obj.last_updated_by = request.user
+                    address_obj.save()
+                else:
+                    print("*****************************")
+                    print(form.errors)
+            return redirect('account:list-suppliers')
+        else:
+            print(supplier_form.errors)
+
+    supContext = {
+        'account_form': supplier_form,
+        'address_inlineformset': address_inlineformset
+    }
+    return render(request, 'create-supplier.html', supContext)
+
+
+def delete_customer(request, id):
+    customer = Customer.objects.get(pk=id)
+    deleted = customer.delete()
+    if deleted:
+        return redirect('account:list-customers')
+    else:
+        print("item not deleted")
+
+
+def delete_supplier(request, id):
+    supplier = Supplier.objects.get(pk=id)
+    deleted = supplier.delete()
+    if deleted:
+        return redirect('account:list-suppliers')
+    else:
+        print("item not deleted")
