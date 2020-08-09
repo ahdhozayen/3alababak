@@ -1,4 +1,4 @@
-{% extends 'master.html' %}
+{% extends 'master.html'%}
 {% load static %}
 {% load l10n %}
 {% load i18n %}
@@ -41,42 +41,38 @@
                   <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" style="width: auto;">#</th>
                   <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: auto;">{% trans "Name" %}</th>
                   <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: auto;">{% trans "Address" %}</th>
-                  <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: auto;">{% trans "City" %}</th>
-                  <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: auto;">{% trans "Country" %}</th>
+                  <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: auto;">{% trans "Country & City" %}</th>
                   <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: auto;">{% trans "Type" %}</th>
                   <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: auto;">{% trans "Actions" %}</th>
                 </tr>
               </thead>
               <tbody>
                 {% for location in locations_list %}
-                <tr role="row" class="odd">
+                <tr role="row">
                   <td class="sorting_1">{{ forloop.counter }}</td>
                   <td>{{ location.name }}</td>
                   <td>{{ location.address }}</td>
-                  <td>{{ location.city }}</td>
-                  <td>{{ location.country }}</td>
+                  <td>{{ location.country }}, {{ location.city }}</td>
                   <td>{{ location.type }}</td>
-                  <td class="Actions">
-                    <div class="w-100 gap-10 peers {% if LANGUAGE_BIDI %} push-left {% else %} push-right {% endif %}">
-                      <div class="peer">
-                        <a href="{% url 'location:update-location' %}">
-                          <button type="button" class="btn cur-p btn-outline-primary">{% trans "Update" %}</button>
-                        </a>
-                      </div>
-                      <div class="peer">
-                        <a href="#">
-                          <button type="button" class="btn cur-p btn-outline-danger" data-toggle="modal" data-target="#delete-modal{{location.pk}}">{% trans "Delete" %}</button>
-                        </a>
+                  <td>
+                    <div class="dropdown d-inline-block">
+                      <a class="btn btn-outline-primary dropdown-toggle mb-1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Actions
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" x-placement="top-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, -2px, 0px);">
+                        <a class="dropdown-item" href="{% url 'location:update-location' %}">{% trans "Update" %}</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete-modal{{supplier.pk}}">{% trans "Delete" %}</a>
                       </div>
                     </div>
                   </td>
                 </tr>
-                <!-- Delete Modal -->
-                <div class="modal fade" id="delete-modal{{location.pk}}" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                <div class="modal fade" id="delete-modal{{supplier.pk}}" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-body">
                         <p>{% trans "Are you sure you want to delete this record?" %}</p>
+                      </div>
+                      <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "No" %}</button>
                         <a href="{% url 'location:delete-location' %}" class="btn btn-danger" type="button">{% trans "Delete" %}</a>
                       </div>

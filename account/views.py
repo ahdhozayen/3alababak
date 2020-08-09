@@ -44,13 +44,13 @@ def create_supplier_address_account(request):
             supplier_obj = supplier_form.save(commit=False)
             supplier_obj.created_by = request.user
             supplier_obj.company = request.user.company
-            supplier_instance = supplier_obj.save()
-            address_inlineformset = supplier_address_formset(request.POST, instance=supplier_instance)
-            for form in address_inlineformset:
-                if form.is_valid():
-                    address_obj = form.save(commit=False)
-                    address_obj.created_by = request.user
-                    address_obj.save()
+            supplier_obj.save()
+            address_inlineformset = supplier_address_formset(request.POST, instance=supplier_obj)
+            if address_inlineformset.is_valid():
+                address_obj = address_inlineformset.save(commit=False)
+                for address in address_obj:
+                    address.created_by = request.user
+                    address.save()
 
             messages.success(request, 'Saved Successfully')
             return redirect('account:list-suppliers')

@@ -4,7 +4,6 @@ from account.models import Company
 from location.models import Location
 
 
-# Create your models here.
 class Brand(models.Model):
     name = models.CharField(max_length=30)
     description = models.TextField(max_length=150, blank=True, null=True)
