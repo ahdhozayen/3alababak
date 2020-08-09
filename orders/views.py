@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from orders.forms import PurchaseOrderCreationForm, purchase_transaction_formset, sale_transaction_formset, \
     SaleOrderCreationForm
 from orders.models import PurchaseOder, SalesOrder
+from django.contrib import messages
 
 
 # Create your views here.
@@ -16,15 +17,17 @@ def create_purchase_order_view(request):
             po_obj.created_by = request.user
             po_instance = po_obj.save()
             po_transaction_inlineformset = purchase_transaction_formset(request.POST, instance=po_instance)
-            for form in po_transaction_inlineformset:
-                if form.is_valid():
-                    po_transaction_obj = form.save(commit=False)
-                    po_transaction_obj.created_by = request.user
-                    po_transaction_obj.save()
-
-            return redirect('home:homepage')
+            if po_transaction_inlineformset.is_valid():
+                po_transaction_obj = po_transaction_inlineformset.save(commit=False)
+                for po_transaction in po_transaction_obj:
+                    po_transaction.created_by = request.user
+                    po_transaction.save()
+                messages.success(request, 'Saved Successfully')
+                return redirect('home:homepage')
+            else:
+                print(po_transaction_inlineformset.errors)
         else:
-            print("Order not place")
+            print(po_form.errors)
     subcontext = {
         'po_form': po_form,
         'po_transaction_inlineformset': po_transaction_inlineformset
@@ -52,12 +55,15 @@ def update_purchase_order_view(request, id):
             po_obj.last_updated_by = request.user
             po_instance = po_obj.save()
             po_transaction_inlineformset = purchase_transaction_formset(request.POST, instance=po_instance)
-            for form in po_transaction_inlineformset:
-                if form.is_valid():
-                    po_transaction_obj = form.save(commit=False)
-                    po_transaction_obj.last_updated_by = request.user
-                    po_transaction_obj.save()
-            return redirect('orders:list-po')
+            if po_transaction_inlineformset.is_valid():
+                po_transaction_obj = po_transaction_inlineformset.save(commit=False)
+                for po_transaction in po_transaction_obj:
+                    po_transaction.last_updated_by = request.user
+                    po_transaction.save()
+                messages.success(request, 'Saved Successfully')
+                return redirect('home:homepage')
+            else:
+                print(po_transaction_inlineformset.errors)
         else:
             print(purchase_order_form.errors)
 
@@ -88,15 +94,17 @@ def create_sales_order_view(request):
             so_obj.created_by = request.user
             so_instance = so_obj.save()
             so_transaction_inlineformset = sale_transaction_formset(request.POST, instance=so_instance)
-            for form in so_transaction_inlineformset:
-                if form.is_valid():
-                    so_transaction_obj = form.save(commit=False)
-                    so_transaction_obj.created_by = request.user
-                    so_transaction_obj.save()
-
-            return redirect('home:homepage')
+            if so_transaction_inlineformset.is_valid():
+                so_transaction_obj = so_transaction_inlineformset.save(commit=False)
+                for so_transaction in so_transaction_obj:
+                    so_transaction.created_by = request.user
+                    so_transaction.save()
+                messages.success(request, 'Saved Successfully')
+                return redirect('home:homepage')
+            else:
+                print(so_transaction_inlineformset.errors)
         else:
-            print("Order not place")
+            print(so_form.errors)
     subcontext = {
         'so_form': so_form,
         'so_transaction_inlineformset': so_transaction_inlineformset
@@ -124,12 +132,15 @@ def update_sale_order_view(request, id):
             so_obj.last_updated_by = request.user
             so_instance = so_obj.save()
             so_transaction_inlineformset = sale_transaction_formset(request.POST, instance=so_instance)
-            for form in so_transaction_inlineformset:
-                if form.is_valid():
-                    so_transaction_obj = form.save(commit=False)
-                    so_transaction_obj.last_updated_by = request.user
-                    so_transaction_obj.save()
-            return redirect('orders:list-so')
+            if so_transaction_inlineformset.is_valid():
+                so_transaction_obj = so_transaction_inlineformset.save(commit=False)
+                for so_transaction in so_transaction_obj:
+                    so_transaction.last_updated_by = request.user
+                    so_transaction.save()
+                messages.success(request, 'Saved Successfully')
+                return redirect('home:homepage')
+            else:
+                print(so_transaction_inlineformset.errors)
         else:
             print(sale_order_form.errors)
 

@@ -16,13 +16,10 @@ def create_customer_address_account(request):
             customer_obj.save()
             address_inlineformset = customer_address_formset(request.POST, instance=customer_obj)
             if address_inlineformset.is_valid():
-                # address_inlineformset.save(commit=False)
-                for form in address_inlineformset:
-                    if form.is_valid():
-                        address_obj = form.save(commit=False)
-                        address_obj.created_by = request.user
-                        address_obj.save()
-
+                address_obj = address_inlineformset.save(commit=False)
+                for address in address_obj:
+                    address.created_by = request.user
+                    address.save()
 
                 messages.success(request, 'Saved Successfully')
                 return redirect('account:list-customers')
@@ -57,8 +54,10 @@ def create_supplier_address_account(request):
                     address.created_by = request.user
                     address.save()
 
-            messages.success(request, 'Saved Successfully')
-            return redirect('account:list-suppliers')
+                messages.success(request, 'Saved Successfully')
+                return redirect('account:list-suppliers')
+            else:
+                print(address_inlineformset.errors)
         else:
             print(supplier_form.errors)
     else:
@@ -124,13 +123,15 @@ def update_customer_view(request, id):
             customer_obj.last_updated_by = request.user
             customer_obj.save()
             address_inlineformset = customer_address_formset(request.POST, instance=customer_obj)
-            for form in address_inlineformset:
-                if form.is_valid():
-                    address_obj = form.save(commit=False)
-                    address_obj.last_updated_by = request.user
-                    address_obj.save()
-            messages.success(request, 'Saved Successfully')
-            return redirect('account:list-customers')
+            if address_inlineformset.is_valid():
+                address_obj = address_inlineformset.save(commit=False)
+                for address in address_obj:
+                    address.last_updated_by = request.user
+                    address.save()
+                messages.success(request, 'Saved Successfully')
+                return redirect('account:list-customers')
+            else:
+                print(address_inlineformset.errors)
         else:
             print(customer_form.errors)
 
@@ -153,15 +154,16 @@ def update_supplier_view(request, id):
             supplier_obj.last_updated_by = request.user
             supplier_obj.save()
             address_inlineformset = supplier_address_formset(request.POST, instance=supplier_obj)
-            for form in address_inlineformset:
-                if form.is_valid():
-                    address_obj = form.save(commit=False)
-                    address_obj.last_updated_by = request.user
-                    address_obj.save()
-                else:
-                    print("*****************************")
-                    print(form.errors)
-            return redirect('account:list-suppliers')
+            if address_inlineformset.is_valid():
+                address_obj = address_inlineformset.save(commit = False)
+                for address in address_obj:
+                    address.last_updated_by = request.user
+                    address.save()
+                messages.success(request, 'Saved Successfully')
+                return redirect('account:list-suppliers')
+
+            else:
+                print(address_inlineformset.errors)
         else:
             print(supplier_form.errors)
 
