@@ -7,7 +7,7 @@ from location.models import Location
 
 class Brand(models.Model):
     name = models.CharField(max_length=30)
-    description = models.TextField(max_length=150, blank=True, null=True)
+    description = models.CharField(max_length=150, blank=True, null=True)
     company = models.ForeignKey(Company, on_delete=models.CASCADE, )
     created_at = models.DateField(auto_now_add=True, null=True)
     last_updated_at = models.DateField(null=True,auto_now=True, auto_now_add=False)
@@ -21,7 +21,7 @@ class Brand(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=30)
-    description = models.TextField(max_length=150, blank=True, null=True)
+    description = models.CharField(max_length=150, blank=True, null=True)
     company = models.ForeignKey(Company, on_delete=models.CASCADE, )
     parent_category = models.ForeignKey('Category', on_delete=models.CASCADE, blank=True, null=True)
     created_at = models.DateField(auto_now_add=True, null=True)
@@ -58,7 +58,8 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, )
     name = models.CharField(max_length=30)
     description = models.CharField(max_length=30, blank=True, null=True)
-    uom = models.ForeignKey(Uom, on_delete=models.CASCADE, )
+    uom = models.ForeignKey(Uom, on_delete=models.CASCADE, blank=True, null=True )
+
     created_at = models.DateField(auto_now_add=True, null=True)
     last_updated_at = models.DateField(null=True,auto_now=True, auto_now_add=False)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True,
@@ -71,8 +72,8 @@ class Product(models.Model):
 
 class Attribute(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE, )
-    name = models.CharField(max_length=30)
-    display_name = models.CharField(max_length=30)
+    name = models.CharField(max_length=50)
+    display_name = models.CharField(max_length=50)
     created_at = models.DateField(auto_now_add=True, null=True)
     last_updated_at = models.DateField(null=True,auto_now=True, auto_now_add=False)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True,
@@ -97,6 +98,9 @@ class ProductAttribute(models.Model):
 
 
 class Item(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, )
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, )
+    uom = models.ForeignKey(Uom, on_delete=models.CASCADE, blank=True, null=True )
     name = models.CharField(max_length=30)
     image = models.FileField(upload_to='uploads/', blank=True, null=True)
     description = models.CharField(max_length=30, blank=True, null=True)
@@ -106,9 +110,7 @@ class Item(models.Model):
     sku = models.CharField(max_length=30)
     barcode = models.CharField(max_length=30)
     tax = models.BooleanField(max_length=30)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, )
-    location = models.ForeignKey(Location, on_delete=models.CASCADE, )
-    uom = models.ForeignKey(Uom, on_delete=models.CASCADE, )
+
     created_at = models.DateField(auto_now_add=True, null=True)
     last_updated_at = models.DateField(null=True,auto_now=True, auto_now_add=False)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True,
