@@ -15,14 +15,19 @@ def create_customer_address_account(request):
             customer_obj.company = request.user.company
             customer_obj.save()
             address_inlineformset = customer_address_formset(request.POST, instance=customer_obj)
-            for form in address_inlineformset:
-                if form.is_valid():
-                    address_obj = form.save(commit=False)
-                    address_obj.created_by = request.user
-                    address_obj.save()
+            if address_inlineformset.is_valid():
+                # address_inlineformset.save(commit=False)
+                for form in address_inlineformset:
+                    if form.is_valid():
+                        address_obj = form.save(commit=False)
+                        address_obj.created_by = request.user
+                        address_obj.save()
 
-            messages.success(request, 'Saved Successfully')
-            return redirect('account:list-customers')
+
+                messages.success(request, 'Saved Successfully')
+                return redirect('account:list-customers')
+            else:
+                print(address_inlineformset.errors)
         else:
             print(customer_form.errors)
     else:
@@ -44,16 +49,20 @@ def create_supplier_address_account(request):
             supplier_obj = supplier_form.save(commit=False)
             supplier_obj.created_by = request.user
             supplier_obj.company = request.user.company
-            supplier_instance = supplier_obj.save()
-            address_inlineformset = supplier_address_formset(request.POST, instance=supplier_instance)
-            for form in address_inlineformset:
-                if form.is_valid():
-                    address_obj = form.save(commit=False)
-                    address_obj.created_by = request.user
-                    address_obj.save()
+            supplier_obj.save()
+            address_inlineformset = supplier_address_formset(request.POST, instance=supplier_obj)
+            if address_inlineformset.is_valid():
+                address_inlineformset.save(commit=False)
+                for form in address_inlineformset:
+                    if form.is_valid():
+                        address_obj = form.save(commit=False)
+                        address_obj.created_by = request.user
+                        address_obj.save()
 
-            messages.success(request, 'Saved Successfully')
-            return redirect('account:list-suppliers')
+                messages.success(request, 'Saved Successfully')
+                return redirect('account:list-customers')
+            else:
+                print(address_inlineformset.errors)
         else:
             print(supplier_form.errors)
     else:
@@ -117,8 +126,8 @@ def update_customer_view(request, id):
         if customer_form.is_valid() and address_inlineformset.is_valid():
             customer_obj = customer_form.save(commit=False)
             customer_obj.last_updated_by = request.user
-            customer_instance = customer_obj.save()
-            address_inlineformset = customer_address_formset(request.POST, instance=customer_instance)
+            customer_obj.save()
+            address_inlineformset = customer_address_formset(request.POST, instance=customer_obj)
             for form in address_inlineformset:
                 if form.is_valid():
                     address_obj = form.save(commit=False)
@@ -146,8 +155,8 @@ def update_supplier_view(request, id):
         if supplier_form.is_valid() and address_inlineformset.is_valid():
             supplier_obj = supplier_form.save(commit=False)
             supplier_obj.last_updated_by = request.user
-            supplier_instance = supplier_obj.save()
-            address_inlineformset = supplier_address_formset(request.POST, instance=supplier_instance)
+            supplier_obj.save()
+            address_inlineformset = supplier_address_formset(request.POST, instance=supplier_obj)
             for form in address_inlineformset:
                 if form.is_valid():
                     address_obj = form.save(commit=False)
