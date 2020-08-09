@@ -7,18 +7,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12">
-      <h1>Datatables Default</h1>
-      <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
-        <ol class="breadcrumb pt-0">
-          <li class="breadcrumb-item">
-            <a href="#">Home</a>
-          </li>
-          <li class="breadcrumb-item">
-            <a href="#">Library</a>
-          </li>
-          <li class="breadcrumb-item active" aria-current="page">Data</li>
-        </ol>
-      </nav>
+      <h1>Suppliers</h1>
       <div class="text-zero top-right-button-container">
         <a href="{% url 'account:create-supplier'%}"><button type="button" class="btn btn-primary btn-lg top-right-button mr-1">ADD NEW</button></a>
       </div>
@@ -38,7 +27,7 @@
             <table class="data-table data-table-feature dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
               <thead>
                 <tr role="row">
-                  <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 155.4px;">#</th>
+                  <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 155.4px;">Supplier ID</th>
                   <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 263.4px;">{% trans "First Name" %}</th>
                   <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 105.8px;">{% trans "Last Name" %}</th>
                   <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 61.8px;">{% trans "Email" %}</th>

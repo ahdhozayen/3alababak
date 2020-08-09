@@ -1,14 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from inventory.models import (Category, Brand, Product, Attribute, Item, Uom,StokeTake)
+from inventory.models import (Category, Brand, Product, Attribute, Item, Uom, StokeTake)
 from inventory.forms import (CategoryForm, category_model_formset, BrandForm, brand_model_formset,
-                             AttributeForm, attribute_model_formset, ProductForm, product_item_inlineformset, stoke_entry_formset,uom_formset,StokeTakeForm)
-
-
+                             AttributeForm, attribute_model_formset, ProductForm, product_item_inlineformset,
+                             stoke_entry_formset, uom_formset, StokeTakeForm)
 
 
 def create_category_view(request):
-    category_formset = category_model_formset(queryset = Category.objects.none())
+    category_formset = category_model_formset(queryset=Category.objects.none())
     if request.method == 'POST':
         category_formset = category_model_formset(request.POST)
         if category_formset.is_valid():
@@ -41,7 +40,7 @@ def list_brands_view(request):
 
 
 def create_brand_view(request):
-    brand_formset = brand_model_formset(queryset = Brand.objects.none())
+    brand_formset = brand_model_formset(queryset=Brand.objects.none())
     if request.method == 'POST':
         brand_formset = brand_model_formset(request.POST)
         if brand_formset.is_valid():
@@ -52,8 +51,8 @@ def create_brand_view(request):
                 form.save()
             return redirect('inventory:list-brands')
     categoryContext = {
-                       'brand_formset': brand_formset
-                       }
+        'brand_formset': brand_formset
+    }
     return render(request, 'create-brand.html', context=categoryContext)
 
 
@@ -77,9 +76,10 @@ def create_attribute_view(request):
                 form.save()
             return redirect('inventory:list-attributes')
     attributeContext = {
-                       'attribute_formset': attribute_formset
-                       }
+        'attribute_formset': attribute_formset
+    }
     return render(request, 'create-attribute.html', context=attributeContext)
+
 
 def list_products_view(request):
     products_list = Product.objects.all()
@@ -100,7 +100,7 @@ def create_product_item_view(request):
             product_obj.company = request.user.company
             product_obj.created_by = request.user
             product_obj.save()
-            item_formset = product_item_inlineformset(request.POST, instance = product_obj)
+            item_formset = product_item_inlineformset(request.POST, instance=product_obj)
             if item_formset.is_valid():
                 item_obj = item_formset.save(commit=False)
                 for form in item_obj:
@@ -108,9 +108,9 @@ def create_product_item_view(request):
                     form.save()
             return redirect('inventory:list-products')
     attributeContext = {
-                        'product_form': product_form,
-                       'item_formset': item_formset
-                       }
+        'product_form': product_form,
+        'item_formset': item_formset
+    }
     return render(request, 'create-product-item.html', context=attributeContext)
 
 
@@ -152,7 +152,7 @@ def list_stoketake_view(request):
 
 
 def create_uom_view(request):
-    uom_from = uom_formset()
+    uom_from = uom_formset(queryset=Uom.objects.none())
     if request.method == 'POST':
         uom_from = uom_formset(request.POST)
         if uom_from.is_valid():

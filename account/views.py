@@ -33,7 +33,8 @@ def create_customer_address_account(request):
 
     customer_information_context = {
         'account_form': customer_form,
-        'address_inlineformset': address_inlineformset
+        'address_inlineformset': address_inlineformset,
+        'title':'New Customer'
     }
     return render(request, 'create-supplier.html', context=customer_information_context)
 
@@ -66,7 +67,9 @@ def create_supplier_address_account(request):
 
     supplier_information_context = {
         'account_form': supplier_form,
-        'address_inlineformset': address_inlineformset
+        'address_inlineformset': address_inlineformset,
+        'title':'New Supplier'
+
     }
 
     return render(request, 'create-supplier.html', context=supplier_information_context)
@@ -137,7 +140,9 @@ def update_customer_view(request, id):
 
     supContext = {
         'account_form': customer_form,
-        'address_inlineformset': address_inlineformset
+        'address_inlineformset': address_inlineformset,
+        'title': 'Update Customer'
+
     }
     return render(request, 'create-supplier.html', supContext)
 
@@ -169,7 +174,9 @@ def update_supplier_view(request, id):
 
     supContext = {
         'account_form': supplier_form,
-        'address_inlineformset': address_inlineformset
+        'address_inlineformset': address_inlineformset,
+        'title': 'Update Supplier'
+
     }
     return render(request, 'create-supplier.html', supContext)
 
