@@ -4,13 +4,13 @@ from django.conf import settings
 
 # Create your models here.
 class Customer(models.Model):
+    company = models.ForeignKey('Company', on_delete=models.CASCADE, )
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     email = models.EmailField()
     phone_number = models.CharField(max_length=30, blank=True, null=True)
     landline = models.CharField(max_length=30, blank=True, null=True)
     status = models.BooleanField(default=False, verbose_name='active', help_text='Checkbox if user is active')
-    company = models.ForeignKey('Company', on_delete=models.CASCADE, )
     created_at = models.DateField(auto_now_add=True, null=True)
     last_updated_at = models.DateField(null=True,auto_now=True, auto_now_add=False)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True,
@@ -22,13 +22,13 @@ class Customer(models.Model):
 
 
 class Supplier(models.Model):
+    company = models.ForeignKey('Company', on_delete=models.CASCADE, )
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     email = models.EmailField()
     phone_number = models.CharField(max_length=30,blank=True, null=True)
     landline = models.CharField(max_length=30, blank=True, null=True)
     status = models.BooleanField(default=False,verbose_name='active', help_text='Checkbox if user is active')
-    company = models.ForeignKey('Company', on_delete=models.CASCADE, )
     created_at = models.DateField(auto_now_add=True, null=True)
     last_updated_at = models.DateField(null=True,auto_now=True, auto_now_add=False)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True,

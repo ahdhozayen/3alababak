@@ -38,10 +38,10 @@ class Category(models.Model):
 
 
 class Uom(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, )
     name = models.CharField(max_length=30)
     type = models.CharField(max_length=30)
     description = models.CharField(max_length=150, blank=True, null=True)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, )
     created_at = models.DateField(auto_now_add=True, null=True)
     last_updated_at = models.DateField(null=True,auto_now=True, auto_now_add=False)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True,
@@ -138,7 +138,7 @@ class StokeTake(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE, )
     name = models.CharField(max_length=30)
     type = models.CharField(max_length=30)
-    date = models.DateField(null=True)
+    date = models.DateField(null=True,blank =True)
     created_at = models.DateField(auto_now_add=True, null=True)
     last_updated_at = models.DateField(null=True,auto_now=True, auto_now_add=False)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True,

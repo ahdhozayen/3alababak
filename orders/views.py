@@ -61,7 +61,7 @@ def update_purchase_order_view(request, id):
                     po_transaction.last_updated_by = request.user
                     po_transaction.save()
                 messages.success(request, 'Saved Successfully')
-                return redirect('home:homepage')
+                return redirect('orders:list-po')
             else:
                 print(po_transaction_inlineformset.errors)
         else:
@@ -138,7 +138,7 @@ def update_sale_order_view(request, id):
                     so_transaction.last_updated_by = request.user
                     so_transaction.save()
                 messages.success(request, 'Saved Successfully')
-                return redirect('home:homepage')
+                return redirect('orders:list-so')
             else:
                 print(so_transaction_inlineformset.errors)
         else:

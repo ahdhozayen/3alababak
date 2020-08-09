@@ -54,17 +54,14 @@
                   <td>{{ order.supplier }}</td>
                   <td>{{ order.total_price }}</td>
                   <td>{{ order.status }}</td>
-                  <td class="Actions">
-                    <div class="w-100 gap-10 peers {% if LANGUAGE_BIDI %} push-left {% else %} push-right {% endif %}">
-                      <div class="peer">
-                        <a href="{% url 'orders:update-po' id=order.pk %}">
-                          <button type="button" class="btn cur-p btn-outline-primary">{% trans "Update" %}</button>
-                        </a>
-                      </div>
-                      <div class="peer">
-                        <a href="#">
-                          <button type="button" class="btn cur-p btn-outline-danger" data-toggle="modal" data-target="#delete-modal{{order.pk}}">{% trans "Delete" %}</button>
-                        </a>
+                  <td>
+                    <div class="dropdown d-inline-block">
+                      <a class="btn btn-outline-primary dropdown-toggle mb-1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Actions
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" x-placement="top-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, -2px, 0px);">
+                        <a class="dropdown-item" href="{% url 'orders:update-po' id=order.pk %}">{% trans "Update" %}</a>
+                        <a class="dropdown-item" href="{% url 'orders:delete-po' id=order.pk %}" data-toggle="modal" data-target="#delete-modal{{order.pk}}">{% trans "Delete" %}</a>
                       </div>
                     </div>
                   </td>

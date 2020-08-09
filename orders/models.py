@@ -26,9 +26,9 @@ class PurchaseOder(models.Model):
 
 
 class SalesOrder(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, )
     code = models.CharField(max_length=30)
     total_price = MoneyField(max_digits=14, decimal_places=2, default_currency='EGP')
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, )
     status = models.CharField(max_length=8,
                               choices=[('recieved', 'Received'), ('retuned', 'Returned'), ('shipping', 'Shipping')])
     created_at = models.DateField(auto_now_add=True, null=True)
@@ -43,10 +43,10 @@ class SalesOrder(models.Model):
 
 
 class PurchaseTransaction(models.Model):
+    purchase_order = models.ForeignKey(PurchaseOder, on_delete=models.CASCADE, )
     item = models.ForeignKey(Item, on_delete=models.CASCADE, )
     quantity = models.IntegerField()
     total_price = MoneyField(max_digits=14, decimal_places=2, default_currency='EGP')
-    purchase_order = models.ForeignKey(PurchaseOder, on_delete=models.CASCADE, )
     created_at = models.DateField(auto_now_add=True, null=True)
     last_updated_at = models.DateField(null=True, auto_now=True, auto_now_add=False)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True,
@@ -59,10 +59,10 @@ def __str__(self):
 
 
 class SalesTransaction(models.Model):
+    sales_order = models.ForeignKey(SalesOrder, on_delete=models.CASCADE, )
     item = models.ForeignKey(Item, on_delete=models.CASCADE, )
     quantity = models.IntegerField()
     total_price = MoneyField(max_digits=14, decimal_places=2, default_currency='EGP')
-    sales_order = models.ForeignKey(SalesOrder, on_delete=models.CASCADE, )
     created_at = models.DateField(auto_now_add=True, null=True)
     last_updated_at = models.DateField(null=True, auto_now=True, auto_now_add=False)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True,
