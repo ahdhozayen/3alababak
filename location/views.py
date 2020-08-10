@@ -7,7 +7,7 @@ from location.forms import LocationCreationForm
 def list_location_view(request):
     locations_list = Location.objects.all()
     location_context = {
-                        'locations_list':locations_list,
+        'locations_list': locations_list,
     }
     return render(request, 'list-locations.html', location_context)
 
@@ -25,7 +25,8 @@ def create_location_view(request):
     else:
         location_form = LocationCreationForm()
     location_context = {
-                        'location_form':location_form,
+        'location_form': location_form,
+        'title': 'New Location'
     }
     return render(request, 'create-location.html', location_context)
 
@@ -41,7 +42,9 @@ def update_location_view(request):
     else:
         location_form = LocationCreationForm()
     location_context = {
-                        'location_form':location_form,
+        'location_form': location_form,
+        'title': 'Update Location'
+
     }
     return render(request, 'create-location.html', location_context)
 

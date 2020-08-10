@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-
+from cities_light.models import Country,City
 
 # Create your models here.
 class Customer(models.Model):
@@ -43,7 +43,7 @@ class Address(models.Model):
     customer = models.ForeignKey('Customer', on_delete=models.CASCADE, blank=True, null=True)
     supplier = models.ForeignKey('Supplier', on_delete=models.CASCADE, blank=True, null=True)
     address = models.CharField(max_length=30, blank=True, null=True)
-    country = models.CharField(max_length=30,blank=True, null=True)
+    country = models.ForeignKey(Country,on_delete=models.CASCADE, blank=True, null=True)
     city = models.CharField(max_length=30,blank=True, null=True)
     phone_number = models.CharField(max_length=30, blank=True, null=True)
     landline = models.CharField(max_length=30, blank=True, null=True)

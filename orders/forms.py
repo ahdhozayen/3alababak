@@ -9,6 +9,9 @@ class PurchaseOrderCreationForm(forms.ModelForm):
     class Meta:
         model = PurchaseOder
         exclude = ('created_at', 'last_updated_at', 'created_by', 'last_updated_by')
+        widgets = {
+            'date': forms.TimeInput(attrs={'class': 'form-control tm', 'type': 'date', })
+        }
 
     def __init__(self, *args, **kwargs):
         super(PurchaseOrderCreationForm, self).__init__(*args, **kwargs)
@@ -43,6 +46,9 @@ class SaleOrderCreationForm(forms.ModelForm):
     class Meta:
         model = SalesOrder
         exclude = ('created_at', 'last_updated_at', 'created_by', 'last_updated_by')
+        widgets = {
+            'date': forms.TimeInput(attrs={'class': 'form-control tm', 'type': 'date', })
+        }
 
     def __init__(self, *args, **kwargs):
         super(SaleOrderCreationForm, self).__init__(*args, **kwargs)

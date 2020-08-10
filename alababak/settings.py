@@ -158,3 +158,4 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
    }
 }
+CITIES_LIGHT_TRANSLATION_LANGUAGES = ['ar', 'en']
