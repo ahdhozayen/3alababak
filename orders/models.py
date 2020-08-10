@@ -9,7 +9,7 @@ from django.conf import settings
 class PurchaseOder(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, )
-    code = models.CharField(max_length=30)
+    code = models.CharField(max_length=10)
     total_price = MoneyField(max_digits=14, decimal_places=2, default_currency='EGP')
     status = models.CharField(max_length=8,
                               choices=[('recieved', 'Received'), ('retuned', 'Returned'), ('shipping', 'Shipping')])
@@ -27,7 +27,7 @@ class PurchaseOder(models.Model):
 class SalesOrder(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, )
-    code = models.CharField(max_length=30)
+    code = models.CharField(max_length=10)
     total_price = MoneyField(max_digits=14, decimal_places=2, default_currency='EGP')
     status = models.CharField(max_length=8,
                               choices=[('recieved', 'Received'), ('retuned', 'Returned'), ('shipping', 'Shipping')])
