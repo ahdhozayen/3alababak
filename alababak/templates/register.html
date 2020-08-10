@@ -1,152 +1,79 @@
 <!DOCTYPE html>
+{% load static %}
+
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <style media="screen">
-    @import "compass/css3";
 
-$button: rgba(148,186,101,0.7);
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <title>3alababak</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-body {
-background: #384047;
-font-family: sans-serif;
-font-size: 10px
-}
-form {
-background: #fff;
-padding: 4em 4em 2em;
-max-width: 400px;
-margin: 50px auto 0;
-box-shadow: 0 0 1em #222;
-border-radius: 2px;
-h2 {
-  margin:0 0 50px 0;
-  padding:10px;
-  text-align:center;
-  font-size:30px;
-  color:darken(#e5e5e5, 50%);
-  border-bottom:solid 1px #e5e5e5;
-}
-p {
-  margin: 0 0 3em 0;
-  position: relative;
-}
-input {
-  display: block;
-  box-sizing: border-box;
-  width: 100%;
-  outline: none;
-  margin:0;
-}
-input[type="text"],
-input[type="password"] {
-  background: #fff;
-  border: 1px solid #dbdbdb;
-  font-size: 1.6em;
-  padding: .8em .5em;
-  border-radius: 2px;
-}
-input[type="text"]:focus,
-input[type="password"]:focus {
-  background: #fff
-}
-span {
-  display:block;
-  background: #F9A5A5;
-  padding: 2px 5px;
-  color: #666;
-}
-input[type="submit"] {
-  background: $button;
-  box-shadow: 0 3px 0 0 darken($button, 10%);
-  border-radius: 2px;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  display: block;
-  font-size: 2em;
-  line-height: 1.6em;
-  margin: 2em 0 0;
-  outline: none;
-  padding: .8em 0;
-  text-shadow: 0 1px #68B25B;
-}
-input[type="submit"]:hover {
-  background: rgba(148,175,101,1);
-  text-shadow:0 1px 3px darken($button, 30%);
-}
-input[type="submit"]:hover {
+  <link rel="stylesheet" href="{% static 'src/font/iconsmind-s/css/iconsminds.css' %}" />
+  <link rel="stylesheet" href="{% static 'src/font/simple-line-icons/css/simple-line-icons.css' %}" />
 
-}
-label{
-  position: absolute;
-  left: 8px;
-  top: 12px;
-  color: #999;
-  font-size: 16px;
-  display: inline-block;
-  padding: 4px 10px;
-  font-weight: 400;
-  background-color: rgba(255,255,255,0);
-  @include transition(color .3s, top .3s, background-color .8s);
-  &.floatLabel{
-    top: -11px;
-    background-color: rgba(255,255,255,0.8);
-    font-size: 14px;
-  }
-}
+  <link rel="stylesheet" href="{% static 'src/css/vendor/bootstrap.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'src/css/vendor/bootstrap.rtl.only.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'src/css/vendor/bootstrap-float-label.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'src/css/main.css' %}" />
+  <link rel="stylesheet" href="{% static "src/css/dore.light.bluenavy.min.css" %}" />
 
-}
-    </style>
-  </head>
-  <body>
+</head>
 
-    <form method="POST">
-         {% csrf_token %}
-         <div class="form-group row">
-           <label class="col-sm-2 col-form-label">Username</label>
-           <div class="col-sm-4">
-             <input id = "id_username" type="text" name="" value="">
-           </div>
-         </div>
-         <div class="form-group row">
-           <label class="col-sm-2 col-form-label">User Type</label>
-           <div class="col-sm-4">
-             <input id ="id_type" type="text" name="" value="">
-           </div>
-         </div>
+<body class="background show-spinner no-footer">
+    <div class="fixed-background"></div>
+    <main>
+        <div class="container">
+            <div class="row h-100">
+                <div class="col-12 col-md-10 mx-auto my-auto">
+                    <div class="card auth-card">
+                        <div class="position-relative image-side ">
+                            <p class=" text-white h2">MAGIC IS IN THE DETAILS</p>
+                            <p class="white mb-0">
+                                Please use this form to register.
+                                <br>If you are a member, please
+                                <a href="{% url 'home:user-login'%}" class="white">login</a>.
+                            </p>
+                        </div>
+                        <div class="form-side">
+                            <a href="#">
+                                <img src="{% static 'src/logos/Logo3alababak.svg' %}" alt="">
+                            </a>
+                            <h6 class="mb-4">Register</h6>
+                            <form method="post">
+                              {% csrf_token %}
 
-         <div class="form-group row">
-             <label class=" col-sm-2 col-form-label">Email</label>
-           <div class="col-sm-4">
-             <input type="text" name="" value="">
-           </div>
-         </div>
-         <div class="form-group row">
-           <label class="col-sm-2 col-form-label">Password</label>
-           <div class="col-sm-4">
-             <input id ="id_password1" type="password" name="" value="">
-           </div>
-         </div>
-         <div class="form-group row">
-           <label class="col-sm-2 col-form-label">Confirm Password</label>
-           <div class="col-sm-4">
-             <input id ="id_password2" type="password" name="" value="">
-           </div>
-         </div>
+                              {% for field in register_form %}
+                              <p>
+                                {{ field.label_tag }}<br>
+                                {{ field }}
+                                {% if field.help_text %}
+                                <small style="color: grey">{{ field.help_text }}</small>
+                                {% endif %}
+                                {% for error in field.errors %}
+                                <p style="color: red">{{ error }}</p>
+                                {% endfor %}
+                              </p>
+                              {% endfor %}
 
-         <div class="form-group row">
-           <div class="col-sm-10">
-             <button type="submit" class="btn btn-primary">Submit</button>
-             <button type="button" class="btn btn-default">
-               <a href="#">Cancel</a>
-             </button>
-           </div>
+                              <button type="submit" class="btn btn-primary">Sgin Up</button>
+                              <div class="line line-dashed"></div>
+                              <p class="text-muted text-center">
+                                <small>Already have an account?</small></p>
+                              <a href="{% url 'home:user-login'%}" class="btn btn-default btn-block">Sgin In</a>
+                            </form>
 
-         </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+  <script src="{% static 'src/js/vendor/jquery-3.3.1.min.js'%}"></script>
+  <script src="{% static 'src/js/vendor/bootstrap.bundle.min.js'%}"></script>
+  <script src="{% static 'src/js/dore.script.js'%}"></script>
+  <script src="{% static "src/js/dore.script.js" %}"></script>
+  <script src="{% static "src/js/scripts.single.theme.js" %}"></script>
+</body>
 
-
-       </form>
-  </body>
 </html>

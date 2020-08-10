@@ -19,6 +19,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import to_locale, get_language
+from account.models import Company
 
 
 def viewAR(request):
@@ -79,6 +80,34 @@ def homepage(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('home:user-login'))
+
+
+def register(request):
+    form = CustomUserCreationForm()
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.save()
+            comp = Company(
+                           name = form.cleaned_data.get('company_name'),
+                           created_by = user.id,
+                           )
+            comp.save()
+            user.company_id = comp.id
+            user.is_staff = True
+            user.save(update_fields=['company', 'is_staff'])
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect(reverse('home:user-login'))
+            else:
+                user_lang=user_lang=to_locale(get_language())
+                if user_lang=='ar':
+                    messages.error(request, 'This account is deactivated!')
+                else:
+                    messages.error(request, 'This Account is inactive!')
+                return render(request, 'login.html')
+    return render(request, 'register.html', {'register_form': form})
 
 
 class PasswordContextMixin:
