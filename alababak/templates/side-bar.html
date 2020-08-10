@@ -7,38 +7,38 @@
 <div class="main-menu">
   <div class="scroll">
     <ul class="list-unstyled">
-      <li class="active">
+      <li class="color">
         <a href="#dashboard">
           <i class="iconsminds-shop-4"></i>
           <span>Dashboards</span>
         </a>
       </li>
-      <li>
+      <li class="color">
         <a href="#accounts">
           <i class="simple-icon-people"></i> Accounts
         </a>
       </li>
-      <li>
+      <li class="color">
         <a href="#inventory">
           <i class="iconsminds-box-close"></i> Inventory
         </a>
       </li>
-      <li>
+      <li class="color">
         <a href="#locations">
           <i class="iconsminds-location-2"></i> Locations
         </a>
       </li>
-      <li>
+      <li class="color">
         <a href="#trans">
           <i class="iconsminds-receipt-4"></i> Transactions
         </a>
       </li>
-      <li>
+      <li class="color">
         <a href="#orders">
           <i class="iconsminds-shopping-cart"></i> Orders
         </a>
       </li>
-      <li>
+      <li class="color">
         <a href="#">
           <i class="simple-icon-notebook"></i> Reports
         </a>
@@ -50,25 +50,25 @@
 <div class="sub-menu">
   <div class="scroll">
     <ul class="list-unstyled" data-link="dashboard">
-      <li class="active">
+      <li class="color">
         <a href="{% url 'home:homepage'%}">
           <i class="simple-icon-rocket"></i> <span class="d-inline-block">Default</span>
         </a>
       </li>
     </ul>
     <ul class="list-unstyled" data-link="accounts">
-      <li>
+      <li class="color">
         <a href="#" data-toggle="collapse" data-target="#collapseAuthorization" aria-expanded="true" aria-controls="collapseAuthorization" class="rotate-arrow-icon opacity-50">
           <i class="simple-icon-arrow-down"></i> <span class="d-inline-block">Accounts List</span>
         </a>
         <div id="collapseAuthorization" class="collapse show">
           <ul class="list-unstyled inner-level-menu">
-            <li>
+            <li class="color">
               <a href="{% url 'account:list-customers'%}">
                 <i class="simple-icon-user-following"></i> <span class="d-inline-block">Customers</span>
               </a>
             </li>
-            <li>
+            <li class="color">
               <a href="{% url 'account:list-suppliers'%}">
                 <i class="simple-icon-user-follow"></i> <span class="d-inline-block">Suppliers</span>
               </a>
@@ -79,28 +79,28 @@
     </ul>
 
     <ul class="list-unstyled" data-link="inventory">
-      <li>
+      <li class="color">
         <a href="#" data-toggle="collapse" data-target="#collapseForms" aria-expanded="true" aria-controls="collapseForms" class="rotate-arrow-icon opacity-50">
           <i class="simple-icon-arrow-down"></i> <span class="d-inline-block">Products</span>
         </a>
         <div id="collapseForms" class="collapse show">
           <ul class="list-unstyled inner-level-menu">
-            <li>
+            <li class="color">
               <a href="{% url 'inventory:list-products'%}">
                 <i class="simple-icon-event"></i> <span class="d-inline-block">Products</span>
               </a>
             </li>
-            <li>
+            <li class="color">
               <a href="{% url 'inventory:list-attributes'%}">
                 <i class="simple-icon-doc"></i> <span class="d-inline-block">Attributes</span>
               </a>
             </li>
-            <li>
+            <li class="color">
               <a href="{% url 'inventory:list-brands'%}">
                 <i class="simple-icon-check"></i> <span class="d-inline-block">Brands</span>
               </a>
             </li>
-            <li>
+            <li class="color">
               <a href="{% url 'inventory:list-categories'%}">
                 <i class="simple-icon-magic-wand"></i> <span class="d-inline-block">Categories</span>
               </a>
@@ -108,18 +108,18 @@
           </ul>
         </div>
       </li>
-      <li>
+      <li class="color">
         <a href="{% url 'inventory:list-stokes'%}">
           <i class="simple-icon-screen-desktop"></i>
           <span class="d-inline-block">Stocktaking</span>
         </a>
       </li>
-      <li>
+      <li class="color">
         <a href="{% url 'account:list-customers'%}">
           <i class="iconsminds-coins"></i> <span class="d-inline-block">Tax</span>
         </a>
       </li>
-      <li>
+      <li class="color">
         <a href="{% url 'inventory:list-uom'%}">
           <i class="simple-icon-calculator"></i> <span class="d-inline-block">UOM</span>
         </a>
@@ -127,18 +127,18 @@
     </ul>
 
     <ul class="list-unstyled" data-link="locations">
-      <li>
+      <li class="color">
         <a href="#" data-toggle="collapse" data-target="#collapseForms" aria-expanded="true" aria-controls="collapseForms" class="rotate-arrow-icon opacity-50">
           <i class="simple-icon-arrow-down"></i> <span class="d-inline-block">Locations & Warehouses</span>
         </a>
         <div id="collapseForms" class="collapse show">
           <ul class="list-unstyled inner-level-menu">
-            <li>
+            <li class="color">
               <a href="{% url 'location:list-locations'%}">
                 <i class="iconsminds-home-3"></i> <span class="d-inline-block">Warehouses</span>
               </a>
             </li>
-            <li>
+            <li class="color">
               <a href="{% url 'location:list-locations'%}">
                 <i class="iconsminds-home-3"></i> <span class="d-inline-block">Stores</span>
               </a>
@@ -149,28 +149,28 @@
     </ul>
 
     <ul class="list-unstyled" data-link="trans" id="menuTypes">
-      <li>
+      <li class="color">
         <a href="#" data-toggle="collapse" data-target="#collapseMenuDetached" aria-expanded="true" aria-controls="collapseMenuDetached" class="rotate-arrow-icon collapsed">
           <i class="simple-icon-arrow-down"></i> <span class="d-inline-block">Transactions</span>
         </a>
         <div id="collapseMenuDetached" class="collapse show">
           <ul class="list-unstyled inner-level-menu">
-            <li>
+            <li class="color">
               <a href="{% url 'account:list-customers'%}">
                 <i class="iconsminds-arrow-inside"></i> <span class="d-inline-block">Receiving</span>
               </a>
             </li>
-            <li>
+            <li class="color">
               <a href="{% url 'account:list-customers'%}">
                 <i class="iconsminds-arrow-loop"></i> <span class="d-inline-block">Return Receiving</span>
               </a>
             </li>
-            <li>
+            <li class="color">
               <a href="{% url 'account:list-customers'%}">
                 <i class="iconsminds-arrow-outside"></i> <span class="d-inline-block">Shipping</span>
               </a>
             </li>
-            <li>
+            <li class="color">
               <a href="{% url 'account:list-customers'%}">
                 <i class="iconsminds-arrow-loop"></i> <span class="d-inline-block">Return Shipping</span>
               </a>
@@ -181,18 +181,18 @@
     </ul>
 
     <ul class="list-unstyled" data-link="orders">
-      <li>
+      <li class="color">
         <a href="#" data-toggle="collapse" data-target="#collapseForms" aria-expanded="true" aria-controls="collapseForms" class="rotate-arrow-icon opacity-50">
           <i class="simple-icon-arrow-down"></i> <span class="d-inline-block">Orders Menu</span>
         </a>
         <div id="collapseForms" class="collapse show">
           <ul class="list-unstyled inner-level-menu">
-            <li>
+            <li class="color">
               <a href="{% url 'orders:list-po'%}">
                 <i class="iconsminds-add-cart"></i> <span class="d-inline-block">Purchase Orders</span>
               </a>
             </li>
-            <li>
+            <li class="color">
               <a href="{% url 'orders:list-so'%}">
                 <i class="iconsminds-add-cart"></i> <span class="d-inline-block">Sales Orders</span>
               </a>

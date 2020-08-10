@@ -10,7 +10,7 @@
   <meta charset="UTF-8">
   <title>3alababak</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel = "icon" type = "image/png" href = "{% static "src/logos/3alababak_icon.png"%}">
+  <link rel="icon" type="image/png" href="{% static "src/logos/3alababak_icon.png"%}">
   <link rel="stylesheet" href="{% static "src/font/iconsmind-s/css/iconsminds.css" %}" />
   <link rel="stylesheet" href="{% static "src/font/simple-line-icons/css/simple-line-icons.css" %}" />
 
@@ -29,11 +29,9 @@
   <link rel="stylesheet" href="{% static "src/css/main.css" %}" />
   <link rel="stylesheet" href="{% static "src/css/dore.light.redruby.min.css" %}" />
 
-  <!-- datatable -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
-  <link rel="stylesheet" type="text/css" href="{% static 'src/css/datatable.css' %}" />
 
 </head>
+
 <body id="app-container" class="menu-default show-spinner">
 
   <nav class="navbar fixed-top">
@@ -75,8 +73,30 @@
 
   <script src="{% static "src/js/dore.script.js" %}"></script>
   <script src="{% static "src/js/scripts.single.theme.js" %}"></script>
-  <!-- dataTable -->
-  <script type="text/javascript" src="{% static  'src/js/datatable-js.js'%}"></script>
+
+  <script type="text/javascript">
+    $(".color").click(function() { //toggleClass
+      if ($(this).hasClass("active")) {
+        console.log('clicked');
+        //$(this).addClass("active");
+        $(this).removeClass("active");
+      } else {
+        console.log('testclicked');
+        $(this).addClass("active");
+      }
+      localStorage.setItem("active", $(this).parent().index());
+      localStorage.setItem("activec", $(this).index());
+      console.log('testclickeding' + $(this).parent().index() + $(this).index());
+
+    });
+
+    var ele = localStorage.getItem("active");
+    var ele1 = localStorage.getItem("activec");
+    //$('ul li:eq(' + ele1 + ')').find('a').addClass("active");
+    $('ul li:eq(' + ele1 + ')').find('a').addClass("active");
+    $('ul li:eq(' + ele + ')').addClass("active");
+    console.log('testclicked' + ele + ele1);
+  </script>
   {% block js %}{% endblock js %}
 </body>
 

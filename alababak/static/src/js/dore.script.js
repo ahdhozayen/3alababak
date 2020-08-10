@@ -2959,15 +2959,167 @@ $.dore = function (element, options) {
         }
       });
 
-      $(".data-table-feature").DataTable({
+      $(".data-table-feature3").DataTable({
         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
         "columns": [
-          { "data": "name" },
-          { "data": "position" },
-          { "data": "office" },
-          { "data": "age" },
-          { "data": "start_date" },
-          { "data": "salary" }
+          { "data": "1" },
+          { "data": "2" },
+          { "data": "3" }
+        ],
+        drawCallback: function () {
+          $($(".dataTables_wrapper .pagination li:first-of-type"))
+            .find("a")
+            .addClass("prev");
+          $($(".dataTables_wrapper .pagination li:last-of-type"))
+            .find("a")
+            .addClass("next");
+
+          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+        },
+        language: {
+          paginate: {
+            previous: "<i class='simple-icon-arrow-left'></i>",
+            next: "<i class='simple-icon-arrow-right'></i>"
+          },
+          search: "_INPUT_",
+          searchPlaceholder: "Search...",
+          lengthMenu: "Items Per Page _MENU_"
+        },
+      });
+
+      $(".data-table-feature4").DataTable({
+        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+        "columns": [
+          { "data": "1" },
+          { "data": "2" },
+          { "data": "3" },
+          { "data": "4" }
+        ],
+        drawCallback: function () {
+          $($(".dataTables_wrapper .pagination li:first-of-type"))
+            .find("a")
+            .addClass("prev");
+          $($(".dataTables_wrapper .pagination li:last-of-type"))
+            .find("a")
+            .addClass("next");
+
+          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+        },
+        language: {
+          paginate: {
+            previous: "<i class='simple-icon-arrow-left'></i>",
+            next: "<i class='simple-icon-arrow-right'></i>"
+          },
+          search: "_INPUT_",
+          searchPlaceholder: "Search...",
+          lengthMenu: "Items Per Page _MENU_"
+        },
+      });
+
+      $(".data-table-feature5").DataTable({
+        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+        "columns": [
+          { "data": "1" },
+          { "data": "2" },
+          { "data": "3" },
+          { "data": "4" },
+          { "data": "5" }
+        ],
+        drawCallback: function () {
+          $($(".dataTables_wrapper .pagination li:first-of-type"))
+            .find("a")
+            .addClass("prev");
+          $($(".dataTables_wrapper .pagination li:last-of-type"))
+            .find("a")
+            .addClass("next");
+
+          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+        },
+        language: {
+          paginate: {
+            previous: "<i class='simple-icon-arrow-left'></i>",
+            next: "<i class='simple-icon-arrow-right'></i>"
+          },
+          search: "_INPUT_",
+          searchPlaceholder: "Search...",
+          lengthMenu: "Items Per Page _MENU_"
+        },
+      });
+
+      $(".data-table-feature6").DataTable({
+        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+        "columns": [
+          { "data": "1" },
+          { "data": "2" },
+          { "data": "3" },
+          { "data": "4" },
+          { "data": "5" },
+          { "data": "6" }
+        ],
+        drawCallback: function () {
+          $($(".dataTables_wrapper .pagination li:first-of-type"))
+            .find("a")
+            .addClass("prev");
+          $($(".dataTables_wrapper .pagination li:last-of-type"))
+            .find("a")
+            .addClass("next");
+
+          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+        },
+        language: {
+          paginate: {
+            previous: "<i class='simple-icon-arrow-left'></i>",
+            next: "<i class='simple-icon-arrow-right'></i>"
+          },
+          search: "_INPUT_",
+          searchPlaceholder: "Search...",
+          lengthMenu: "Items Per Page _MENU_"
+        },
+      });
+
+      $(".data-table-feature7").DataTable({
+        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+        "columns": [
+          { "data": "1" },
+          { "data": "2" },
+          { "data": "3" },
+          { "data": "4" },
+          { "data": "5" },
+          { "data": "6" },
+          { "data": "7" }
+        ],
+        drawCallback: function () {
+          $($(".dataTables_wrapper .pagination li:first-of-type"))
+            .find("a")
+            .addClass("prev");
+          $($(".dataTables_wrapper .pagination li:last-of-type"))
+            .find("a")
+            .addClass("next");
+
+          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+        },
+        language: {
+          paginate: {
+            previous: "<i class='simple-icon-arrow-left'></i>",
+            next: "<i class='simple-icon-arrow-right'></i>"
+          },
+          search: "_INPUT_",
+          searchPlaceholder: "Search...",
+          lengthMenu: "Items Per Page _MENU_"
+        },
+      });
+
+      $(".data-table-feature8").DataTable({
+        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+        "columns": [
+          { "data": "1" },
+          { "data": "2" },
+          { "data": "3" },
+          { "data": "4" },
+          { "data": "5" },
+          { "data": "6" },
+          { "data": "7" },
+          { "data": "8" }
         ],
         drawCallback: function () {
           $($(".dataTables_wrapper .pagination li:first-of-type"))
