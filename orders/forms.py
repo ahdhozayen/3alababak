@@ -10,7 +10,7 @@ class PurchaseOrderCreationForm(forms.ModelForm):
         model = PurchaseOder
         exclude = ('company', 'created_at', 'last_updated_at', 'created_by', 'last_updated_by')
         widgets = {
-            'date': forms.TimeInput(attrs={'class': 'form-control tm', 'type': 'date', })
+            'date': forms.DateInput(attrs={'class': 'form-control tm', 'type': 'date', })
         }
 
     def __init__(self, *args, **kwargs):
