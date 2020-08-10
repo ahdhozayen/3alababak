@@ -18,7 +18,9 @@ def create_category_view(request):
                 form.save()
             return redirect('inventory:list-categories')
     categoryContext = {
-        'category_formset': category_formset
+        'category_formset': category_formset,
+        'title': 'New Category'
+
     }
     return render(request, 'create-category.html', context=categoryContext)
 
@@ -51,7 +53,9 @@ def create_brand_view(request):
                 form.save()
             return redirect('inventory:list-brands')
     categoryContext = {
-        'brand_formset': brand_formset
+        'brand_formset': brand_formset,
+        'title': 'New Brand'
+
     }
     return render(request, 'create-brand.html', context=categoryContext)
 
@@ -76,7 +80,9 @@ def create_attribute_view(request):
                 form.save()
             return redirect('inventory:list-attributes')
     attributeContext = {
-        'attribute_formset': attribute_formset
+        'attribute_formset': attribute_formset,
+        'title': 'New Attribute'
+
     }
     return render(request, 'create-attribute.html', context=attributeContext)
 
@@ -109,7 +115,8 @@ def create_product_item_view(request):
             return redirect('inventory:list-products')
     attributeContext = {
         'product_form': product_form,
-        'item_formset': item_formset
+        'item_formset': item_formset,
+
     }
     return render(request, 'create-product-item.html', context=attributeContext)
 
@@ -138,7 +145,9 @@ def create_stoketake_view(request):
             print(stoke_form.errors)
     stoke_context = {
         'stoke_form': stoke_from,
-        'stoke_entry_inlineformset': stoke_entry_inlineformset
+        'stoke_entry_inlineformset': stoke_entry_inlineformset,
+        'title': 'New Stoke Take'
+
     }
     return render(request, 'create-stoke.html', context=stoke_context)
 
@@ -165,7 +174,9 @@ def create_uom_view(request):
         else:
             print(uom_from.errors)
     uom_context = {
-        'uom_from': uom_from
+        'uom_from': uom_from,
+        'title': 'New UOM'
+
     }
     return render(request, 'create-uom.html', context=uom_context)
 

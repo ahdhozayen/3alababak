@@ -30,7 +30,8 @@ def create_purchase_order_view(request):
             print(po_form.errors)
     subcontext = {
         'po_form': po_form,
-        'po_transaction_inlineformset': po_transaction_inlineformset
+        'po_transaction_inlineformset': po_transaction_inlineformset,
+        'title':'New Purchase Order'
     }
     return render(request, 'create-purchase-order.html', context=subcontext)
 
@@ -69,7 +70,9 @@ def update_purchase_order_view(request, id):
 
     supContext = {
         'po_form': purchase_order_form,
-        'po_transaction_inlineformset': po_transaction_inlineformset
+        'po_transaction_inlineformset': po_transaction_inlineformset,
+        'title': 'Update Purchase Order'
+
     }
     return render(request, 'create-purchase-order.html', supContext)
 
@@ -107,7 +110,9 @@ def create_sales_order_view(request):
             print(so_form.errors)
     subcontext = {
         'so_form': so_form,
-        'so_transaction_inlineformset': so_transaction_inlineformset
+        'so_transaction_inlineformset': so_transaction_inlineformset,
+        'title': 'New Sale Order'
+
     }
     return render(request, 'create-sale-order.html', context=subcontext)
 
@@ -146,7 +151,9 @@ def update_sale_order_view(request, id):
 
     supContext = {
         'so_form': sale_order_form,
-        'so_transaction_inlineformset': so_transaction_inlineformset
+        'so_transaction_inlineformset': so_transaction_inlineformset,
+        'title': 'Update Sale Order'
+
     }
     return render(request, 'create-sale-order.html', supContext)
 
