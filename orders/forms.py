@@ -8,7 +8,7 @@ from djmoney.models.fields import MoneyField
 class PurchaseOrderCreationForm(forms.ModelForm):
     class Meta:
         model = PurchaseOder
-        exclude = ('created_at', 'last_updated_at', 'created_by', 'last_updated_by')
+        exclude = ('company', 'created_at', 'last_updated_at', 'created_by', 'last_updated_by')
         widgets = {
             'date': forms.TimeInput(attrs={'class': 'form-control tm', 'type': 'date', })
         }
@@ -45,7 +45,7 @@ class PurchaseTransactionCreationForm(forms.ModelForm):
 class SaleOrderCreationForm(forms.ModelForm):
     class Meta:
         model = SalesOrder
-        exclude = ('created_at', 'last_updated_at', 'created_by', 'last_updated_by')
+        exclude = ('company', 'created_at', 'last_updated_at', 'created_by', 'last_updated_by')
         widgets = {
             'date': forms.TimeInput(attrs={'class': 'form-control tm', 'type': 'date', })
         }
@@ -83,4 +83,4 @@ purchase_transaction_formset = inlineformset_factory(PurchaseOder, PurchaseTrans
                                                      form=PurchaseTransactionCreationForm, extra=3, can_delete=False)
 
 sale_transaction_formset = inlineformset_factory(SalesOrder, SalesTransaction,
-                                                     form=SaleTransactionCreationForm, extra=3, can_delete=False)
+                                                 form=SaleTransactionCreationForm, extra=3, can_delete=False)

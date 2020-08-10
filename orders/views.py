@@ -15,6 +15,7 @@ def create_purchase_order_view(request):
         if po_form.is_valid() and po_transaction_inlineformset.is_valid():
             po_obj = po_form.save(commit=False)
             po_obj.created_by = request.user
+            po_obj.company = request.user.company
             po_instance = po_obj.save()
             po_transaction_inlineformset = purchase_transaction_formset(request.POST, instance=po_instance)
             if po_transaction_inlineformset.is_valid():
@@ -23,7 +24,7 @@ def create_purchase_order_view(request):
                     po_transaction.created_by = request.user
                     po_transaction.save()
                 messages.success(request, 'Saved Successfully')
-                return redirect('home:homepage')
+                return redirect('orders:list-po')
             else:
                 print(po_transaction_inlineformset.errors)
         else:
@@ -95,6 +96,7 @@ def create_sales_order_view(request):
         if so_form.is_valid() and so_transaction_inlineformset.is_valid():
             so_obj = so_form.save(commit=False)
             so_obj.created_by = request.user
+            so_obj.company = request.user.company
             so_instance = so_obj.save()
             so_transaction_inlineformset = sale_transaction_formset(request.POST, instance=so_instance)
             if so_transaction_inlineformset.is_valid():
@@ -103,7 +105,7 @@ def create_sales_order_view(request):
                     so_transaction.created_by = request.user
                     so_transaction.save()
                 messages.success(request, 'Saved Successfully')
-                return redirect('home:homepage')
+                return redirect('orders:list-so')
             else:
                 print(so_transaction_inlineformset.errors)
         else:

@@ -125,7 +125,7 @@ class StokeEntryForm(forms.ModelForm):
     class Meta:
         model = StokeEntry
         fields = '__all__'
-        exclude = ('company', 'created_at', 'last_updated_at', 'created_by', 'last_updated_by')
+        exclude = ('company', 'approval','created_at', 'last_updated_at', 'created_by', 'last_updated_by')
 
     def __init__(self, *args, **kwargs):
         super(StokeEntryForm, self).__init__(*args, **kwargs)
