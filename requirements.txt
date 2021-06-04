@@ -1,4 +1,4 @@
-Django==2.2
+Django==2.2.21
 django-autoslug-iplweb==1.9.4.dev0
 django-cities-light==3.6.0
 django-money==1.1
